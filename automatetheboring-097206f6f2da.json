@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "automatetheboring-271519",
+  "private_key_id": "097206f6f2dab305e78327a9b2a7052760702120",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCuXhXX70K5cbmQ\ndFFuAjFRw50hQJi3ptjzjyYXjQYF0bcJlMesFBH/JHa0TEbZ+pUV94zBrUaZVMG0\nyyCsrtcy60cBJQmW6mjESNtcBTCjC1YMnCO6rXYHwH2e4tnPl75FpHdHwoGe2xuw\n5bOEHyFJutXI1wtPPSJopluyADVEhtUfbLIdC3nJBWB/PabGzh7Go6SzgjznCWGp\nk5Xr6JoVfcKNAor21HZX1mpqAuf19oTYKuWjNBj5y22o7WXCxYB3E/RG2P0dTaSK\ngmZpUm0AE0IQH9UE/XOTHTenULnOV0zjk0slDq90FYTZkH/zJsSvR7MUaqFl6TNM\nC8MWVrEdAgMBAAECggEAMDjT6KqCNQAHFjSc+oP/uMGU+IfBVHT/pegOXFADfOOB\nL9SmHehVC889RuKba5g519/k3QE7N5dxlLrid+9Ik4vu0Jm6G7MLM1GE3N+Qkl7F\ntuoNlYh4Tm+FLkZFf3xTQjZYSI+5wkGNWHBGI8FqNtZFXmxec9UP6YosbL9S+/aq\ngS7ofuR6xr2hAnMO21iXS9iWOOY+LwbbJhJrtR2z6jbI/wjWTYGbbCB/Fbjt2czp\npSfuebqAIsUrioC6EAINRQCRj5ljSacZ8BdcTpH+J92ngKXZYxhrzupPonMIY0x1\ny5sw5DUAtRZxU4Ut+DSBNNkzXGvQLJqvo1STYzBVPwKBgQDq2668ey10kD2Di4cS\nr9xua10bAlwH3v0xY1N5Y5xIbSaW1+OdggTjeEkyB5qBRG8PNAhLscizuD6Ufpag\nMe6PXQuddnAeA1E6IF9ujMd19h3vgKniHL+El9AJyj8/lsk/f6a9awIAw0bbxj6j\nFVpFAr+fm9fDoIKEuuUmAMj6mwKBgQC+EGS/F974ruQvsT/Qq8vRq43PK7VQ0VCD\ndGwrQbgYgstw3R3kRw5CZwrVcGJDVFiNgOohLuH62/ZXCm2IUYn3XXq/NMPgnovX\nh+n4WYppM8/b6srCU6BY96Q8J2Vvlzcki+r28ujJPlU53dSB+gi76PqRB32CN5JW\nX4rfnTICpwKBgQCaq+1LMjBAeRIaBRUC6JDao5igxhAIGwJSuWBrLH/rbv8gDrRX\nsh44FKrX6QwHICOoNpNUDpToT2nfb/MRM3EyN4wDutGh4ntnNZTEALEH7fvPFMRN\nJrO2xih7mhfHcC2/xPjx/HxINlL/QHNWAiT+GA5NNlyF+LqcYV2yhofWCwKBgQCx\nUiwcGJI+4zQixrRp443hjLNeAEJGJzJ9oiW06bhurcBOCQ11R1GnY+k4noQemteP\nFSHaWZodaBBYvnLYRnJ4ZS86qmjA7Eo9iCEiQa+fXOZlH5WRXWHw/wGr2XmKdcLN\nhvhs8s15y3zJ4wr7RKHXZpI2so1G6r/Nc4/l9guNawKBgQCU7NQQRpPxoMR5K3mk\nRrVW2plhGJkDxDyAgyV2eD9dztEMJSdoyw2yZMbTClnDSkf74aZmOnZEMDMFxKKL\nS+onGBT7CeCtmkmVJ7So2EaaHN0z6CwwU7ejpiirPDLaWD7SQjBf5owpajEYzjc4\nefogZ2xY7Gzw2I+CzqguhVpMPg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "python-automate@automatetheboring-271519.iam.gserviceaccount.com",
+  "client_id": "107677601959611648085",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-automate%40automatetheboring-271519.iam.gserviceaccount.com"
+}
