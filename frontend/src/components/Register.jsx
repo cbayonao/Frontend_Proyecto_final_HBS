@@ -10,7 +10,7 @@ const Register = () => (
                 </figure>
             </div>
             <div className="Register-titulo">
-                <h2>Este es el register</h2>
+                <h2>Registro</h2>
             </div>
             <div className="Register-input-name">
                 <input onChange="" type="text" name="name" id="InputName" placeholder="Ingresa tu Nombre" />
