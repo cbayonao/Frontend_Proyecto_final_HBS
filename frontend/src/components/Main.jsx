@@ -6,6 +6,7 @@ const MainStyled = styled.div`
     justify-content: center;
     padding: 1em;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 `;
 
 const Main = ({ children }) => (
