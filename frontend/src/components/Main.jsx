@@ -1,11 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const MainStyled = styled.div`
+    display: grid;
+    justify-content: center;
+    padding: 1em;
+    text-align: center;
+`;
 
 const Main = ({ children }) => (
-    <div className="Main">
+    <MainStyled>
         <div className="Main-container">
             {children}
         </div>
-    </div>
+    </MainStyled>
 );
 
 export default Main;
