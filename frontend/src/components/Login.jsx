@@ -6,8 +6,9 @@ const LoginStyle = styled.div`
     background: #FFFFCC;
     border-radius: 10px;
     -webkit-box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.3);
-    padding: 0 0 2em 0;
-    width: 390px;
+    padding: 2em 0 2em 0;
+    margin: 2em 0 4em 0;
+    width: 500px;
 
 `;
 
@@ -70,7 +71,7 @@ const ButtonLogin = styled.button`
     padding: 0 20px;
     width: 100%;
     height: 60px;
-    background-color: #C9C93B;
+    background-color: #CCCC00;
     font-family: 'Roboto' sans-serif;
     font-size: 14px;
     color: #fff;
