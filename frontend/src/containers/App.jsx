@@ -6,31 +6,27 @@ import Register from '../components/Register';
 import Verification from '../components/Verification';
 import { createGlobalStyle } from 'styled-components';
 import getApi from '../hooks/getApi';
-
-const GlobalStyle = createGlobalStyle`
-    body{
-        font-family: 'Lato', sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #E9E9E9;
-        font-family: 'Lato', sans-serif;
-    }
-`;
+import {
+  GlobalStyle, ImgDiv, OpacityDiv
+} from "../css/styles";
 
 
 function App() {
   const data = getApi();
-    console.log(data);
+  console.log(data);
   return (
     <HashRouter>
-      <GlobalStyle />
-      <Switch>
-        <Main>
-        <Route exact path="/" component={Login}/>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/verification" component={Verification}/>
-        </Main>
-      </Switch>
+      <GlobalStyle>
+        <ImgDiv>
+          <OpacityDiv>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/verification" component={Verification} />
+            </Switch>
+          </OpacityDiv>
+        </ImgDiv>
+      </GlobalStyle>
     </HashRouter>
   );
 }
