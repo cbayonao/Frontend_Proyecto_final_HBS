@@ -19,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
+  const data = getApi();
+    console.log(data);
   return (
     <HashRouter>
       <GlobalStyle />
