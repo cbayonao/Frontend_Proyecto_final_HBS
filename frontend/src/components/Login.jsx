@@ -9,9 +9,8 @@ const LoginStyle = styled.div`
     padding: 2em 0 2em 0;
     margin: 2em 0 4em 0;
     width: 500px;
-
-`;
-
+`
+;
 const FormStyle = styled.form`
     padding: 0 1em 0 1em;
 `;
@@ -113,7 +112,7 @@ const Login = () => (
                 </DivButtonLogin>
             </FormStyle>
             <div className="Login-Register">
-                <p>No estas registrado? <a href="/"> crea tu cuenta</a></p>
+                <p>No estas registrado? <a href="/#/register"> crea tu cuenta</a></p>
             </div>
         </div>
     </LoginStyle>

@@ -1,9 +1,11 @@
 import React from 'react';
+import { HashRouter, Switch, Route } from "react-router-dom";
 import Main from '../components/Main';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Verification from '../components/Verification';
 import { createGlobalStyle } from 'styled-components';
+import getApi from '../hooks/getApi';
 
 const GlobalStyle = createGlobalStyle`
     body{
@@ -16,15 +18,19 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-const App = () => {
-    return (
+function App() {
+  return (
+    <HashRouter>
+      <GlobalStyle />
+      <Switch>
         <Main>
-        <GlobalStyle />
-            <Login />
-            <Register />
-            <Verification />
+        <Route exact path="/" component={Login}/>
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/verification" component={Verification}/>
         </Main>
-    );
+      </Switch>
+    </HashRouter>
+  );
 }
 
 export default App;

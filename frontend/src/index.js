@@ -7,4 +7,5 @@ import App from './containers/App';
 // import Verification from './components/Verification';
 
 // Cambiar la vista a renderizar par ver cada vista
+
 ReactDOM.render(<App />, document.getElementById('app'));

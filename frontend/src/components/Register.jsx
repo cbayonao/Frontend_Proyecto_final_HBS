@@ -35,6 +35,12 @@ const InputRegister = styled.input`
     background: transparent;
     outline: none;
     border: none;
+    ::placeholder,
+    ::-webkit-input-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+  }
 `;
 
 const FormStyle = styled.form`
@@ -54,10 +60,13 @@ const ButtonLogin = styled.button`
     color: #fff;
     line-height: 1.2;
     text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
     transition: all 0.4s;
     border: none;
     overflow: visible;
     border-radius: 5px;
+  }
 `;
 
 //Return implicito
@@ -81,13 +90,16 @@ const Register = () => (
                         <InputRegister onChange="" type="text" name="lastname" id="InputLastName" placeholder="Ingresa tu Apellido" />
                     </DivInputContainer>
                     <DivInputContainer>
+                        <InputRegister onChange="" type="tel" name="mobile" id="InputMobile" placeholder="Ingresa tu # de telefono" />
+                    </DivInputContainer>
+                    <DivInputContainer>
                         <InputRegister onChange="" type="email" name="email" id="InputEmail" placeholder="Ingresa tu Email" />
                     </DivInputContainer>
                     <DivInputContainer>
                         <InputRegister onChange="" type="password" name="password" id="InputPassword" placeholder="Ingresa tu Contraseña" />
                     </DivInputContainer>
                     <DivInputContainer>
-                        <InputRegister onChange="" type="tel" name="mobile" id="InputMobile" placeholder="Ingresa tu # de telefono" />
+                        <InputRegister onChange="" type="password" name="password" id="InputPassword" placeholder="Verifica tu Contraseña" />
                     </DivInputContainer>
                     <DivInputContainer>
                         <label for="cars">Tipo Documento</label>
