@@ -58,7 +58,7 @@ class Login extends React.Component {
                             <ButtonLogin type="button" onClick={this.print}>Ingresa</ButtonLogin>
                         </DivButtonLogin>
                     </FormStyle>
-                    <div className="Login-Register">
+                    <div className="Login-Register" style={{margin: '5%'}}>
                         <p>No estas registrado? <a href="/#/register"> crea tu cuenta</a></p>
                     </div>
                 </div>
