@@ -30,7 +30,7 @@ const Home = () => (
               <Tbody>
                 <Tr>
                   <Td>
-                    <a href="http://example.com">
+                    <a href="/#/processdetail">
                       <div>
                         11001310502620140058300
                       </div>
