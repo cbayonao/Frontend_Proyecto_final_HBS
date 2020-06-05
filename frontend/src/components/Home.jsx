@@ -12,58 +12,56 @@ import {
   ButtonHomeDelete,
   InputProcHome,
   LabelInputHome
-} from "../css/styles";
+} from "../css/home";
 
 //Return implicito
-const Home = () => (
-    <div className="Home">
-        <div className="Home-container">
-          <div className="Title-home">
-            <TitleHome>Bienvenid@</TitleHome>
-          </div>
-          <div>
-            <LabelInputHome>Ingresa el numero del proceso (23 digitos):</LabelInputHome>
-          </div>
-          <div className="Input-proc">
-            <InputProcHome
-              type="text"
-              placeholder="Numero de Proceso"
-              required />
-              <ButtonHomeInpProc>
-                Ingresar
+export default () => (
+  <div className="Home">
+    <div className="Home-container">
+      <div className="Title-home">
+        <TitleHome>Bienvenid@</TitleHome>
+      </div>
+      <div>
+        <LabelInputHome>Ingresa el numero del proceso (23 digitos):</LabelInputHome>
+      </div>
+      <div className="Input-proc">
+        <InputProcHome
+          type="text"
+          placeholder="Numero de Proceso"
+          required />
+        <ButtonHomeInpProc>
+          Ingresar
               </ButtonHomeInpProc>
-          </div>
-          <br/>
-          <HomeDivTable>
-            <TableHome>
-              <thead>
-                <Tr>
-                  <th>Numero del proceso</th>
-                  <th>Partes del Proceso</th>
-                  <th>Opciones</th>
-                </Tr>
-              </thead>
-              <Tbody>
-                <Tr>
-                  <Td>
-                    <a href="/#/processdetail">
-                      <div>
-                        11001310502620140058300
+      </div>
+      <br />
+      <HomeDivTable>
+        <TableHome>
+          <thead>
+            <Tr>
+              <th>Numero del proceso</th>
+              <th>Partes del Proceso</th>
+              <th>Opciones</th>
+            </Tr>
+          </thead>
+          <Tbody>
+            <Tr>
+              <Td>
+                <a href="/#/processdetail">
+                  <div>
+                    11001310502620140058300
                       </div>
-                    </a>
-                  </Td>
-                  <Td>Demandante: XXXXXX - Demandado: XXXXX</Td>
-                  <Td>
-                    <ButtonHomeBuscar>Buscar</ButtonHomeBuscar>
-                    <ButtonHomeIntesity>Intensidad</ButtonHomeIntesity>
-                    <ButtonHomeDelete>Eliminar</ButtonHomeDelete>
-                  </Td>
-                </Tr>
-              </Tbody>
-            </TableHome>
-          </HomeDivTable>
-        </div>
+                </a>
+              </Td>
+              <Td>Demandante: XXXXXX - Demandado: XXXXX</Td>
+              <Td>
+                <ButtonHomeBuscar className="Buscar" >Buscar</ButtonHomeBuscar>
+                <ButtonHomeIntesity className="Intensidad">Intensidad</ButtonHomeIntesity>
+                <ButtonHomeDelete className="Eliminar">Eliminar</ButtonHomeDelete>
+              </Td>
+            </Tr>
+          </Tbody>
+        </TableHome>
+      </HomeDivTable>
     </div>
+  </div>
 );
-
-export default Home;
