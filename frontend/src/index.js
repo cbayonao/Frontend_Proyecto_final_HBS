@@ -8,5 +8,4 @@ import App from './containers/App';
 
 // Cambiar la vista a renderizar par ver cada vista
 
-
 ReactDOM.render(<App />, document.getElementById('app'));
