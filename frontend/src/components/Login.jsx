@@ -44,7 +44,7 @@ export default () => {
                     window.location.href = "/#/verification";
                 } else {
                     $("#modal-close").css("display", "flex");
-                    $("#modal-close").css("transition-timing-function", "ease");
+                    $("#modal-close p").text("Usuario o contraseña incorrecto");
                     setTimeout(() => {
                         $("#modal-close").css("display", "none");
                     }, 5000);
