@@ -173,7 +173,6 @@ export const TableHome = styled.table`
 border: 1px solid white;
 `;
 
-
 export const HomeDivTable = styled.div`
 border: 1px solid #e8e8e8;
 border-radius: 4px;
