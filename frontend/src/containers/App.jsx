@@ -1,12 +1,11 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from "react-router-dom";
-import Main from '../components/Main';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Verification from '../components/Verification';
+import ErrorLogin from '../components/ErrorLogin';
 import SearchParams from '../components/SearchParams';
 import Home from '../components/Home';
-import { createGlobalStyle } from 'styled-components';
 import getApi from '../hooks/getApi';
 import {
   GlobalStyle, ImgDiv, OpacityDiv
@@ -18,6 +17,7 @@ function App() {
   console.log(data);
   return (
     <HashRouter>
+      <ErrorLogin />
       <GlobalStyle>
         <ImgDiv>
           <OpacityDiv>
