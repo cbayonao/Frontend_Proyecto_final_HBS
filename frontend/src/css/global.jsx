@@ -50,16 +50,15 @@ export const ErrDiv = styled.div`
     background-color: white;
     z-index: 1;
     border-radius: 5px;
-    height: 50px;
     align-items: center;
     justify-content: space-around;
     margin: 20px;
     padding: 20px;
-    animation: fadeIn ease 5s;
-    -webkit-animation: fadeIn ease 5s;
-    -moz-animation: fadeIn ease 5s;
-    -o-animation: fadeIn ease 5s;
-    -ms-animation: fadeIn ease 5s;
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
     }
     @keyframes fadeIn {
     0% {opacity:0;}
