@@ -54,9 +54,9 @@ const Home = () => (
                   </Td>
                   <Td>Demandante: XXXXXX - Demandado: XXXXX</Td>
                   <Td>
-                    <ButtonHomeBuscar className="Buscar" >Buscar</ButtonHomeBuscar>
-                    <ButtonHomeIntesity className="Intensidad">Intensidad</ButtonHomeIntesity>
-                    <ButtonHomeDelete className="Eliminar">Eliminar</ButtonHomeDelete>
+                    <ButtonHomeBuscar>Buscar</ButtonHomeBuscar>
+                    <ButtonHomeIntesity>Intensidad</ButtonHomeIntesity>
+                    <ButtonHomeDelete>Eliminar</ButtonHomeDelete>
                   </Td>
                 </Tr>
               </Tbody>
