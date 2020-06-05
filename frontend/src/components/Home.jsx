@@ -1,5 +1,17 @@
 import React from 'react';
-import { ButtonHomeInpProc, TitleHome, Tr, Td, Tbody, HomeDivTable, TableHome, ButtonHomeBuscar, ButtonHomeIntesity, ButtonHomeDelete } from "../css/styles";
+import {
+  ButtonHomeInpProc,
+  TitleHome,
+  Tr,
+  Td,
+  Tbody,
+  HomeDivTable,
+  TableHome,
+  ButtonHomeBuscar,
+  ButtonHomeIntesity,
+  ButtonHomeDelete,
+  InputProcHome
+} from "../css/styles";
 
 //Return implicito
 const Home = () => (
@@ -12,7 +24,10 @@ const Home = () => (
             <label>Ingresa el numero del proceso (23 digitos):</label>
           </div>
           <div className="Input-proc">
-            <input type="text" placeholder="Numero de Proceso" required />
+            <InputProcHome
+              type="text"
+              placeholder="Numero de Proceso"
+              required />
               <ButtonHomeInpProc>
                 Ingresar
               </ButtonHomeInpProc>

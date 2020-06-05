@@ -145,6 +145,7 @@ background-color: #fff;
 border-radius: 5px;
 margin: 1em 0 1em 0;
 `;
+
 export const RSelect = styled.select`
 height: 50px;
 padding: 0 25px 0 20px;
@@ -197,6 +198,7 @@ export const Tbody = styled.tbody`
     padding: 20px;
     vertical-align: top;
     border-top: 0;
+    font-size: 50px;
   }
 `;
 
@@ -255,4 +257,18 @@ display: inline-block;
 font-size: 20px;
 font-family: 'Roboto' sans-serif;
 margin: 5px;
+`;
+
+export const InputProcHome = styled.input`
+height: 50px;
+padding: 0 25px 0 25px;
+border-radius: 5px;
+font: 400 13.3333px Arial;
+overflow: visible;
+background: transparent;
+outline: none;
+border: 1px solid #e6e6e6;
+width: 100%;
+margin: 2%;
+color: white;
 `;
