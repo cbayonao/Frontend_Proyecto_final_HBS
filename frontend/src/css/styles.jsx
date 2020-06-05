@@ -287,3 +287,90 @@ margin-top: 5px;
 margin-bottom: 5px;
 color: black;
 `;
+
+export const ProDetail = styled.div`
+display: grid;
+grid-template-columns: minmax(auto, 1024px);
+justify-content: center;
+padding: 1em;
+`;
+
+export const ContainerProDetail = styled.div`
+display: grid;
+padding: 2em;
+grid-template-columns: 1fr;
+grid-gap: 2rem;
+grid-row-gap: 0.5em;
+background: rgba(216, 216, 216, 0.6);
+border-radius: 4px;
+@media only screen and (max-width : 767px ){
+    grid-template-columns: 1fr;
+}
+`;
+
+export const ContainerActuacion = styled.div`
+display: grid;
+grid-template-columns: 1fr 3fr;
+border-bottom: 3px dotted #bbb;
+@media only screen and (max-width : 767px ){
+    grid-template-columns: 1fr;
+`;
+
+export const ContainerProDetail2 = styled.div`
+display: grid;
+padding: 2em;
+margin-top: 1em;
+grid-template-columns: 1fr;
+grid-gap: 2rem;
+grid-row-gap: 0.5em;
+background: rgba(153, 148, 193, 0.6);
+border-radius: 4px;
+@media only screen and (max-width : 767px ){
+    grid-template-columns: 1fr;
+}
+`;
+
+export const ContainerFlexDataGen = styled.div`
+display: grid;
+grid-template-columns: 2fr 2fr;
+@media only screen and (max-width : 767px ){
+    grid-template-columns: 1fr;
+`;
+
+export const ContainerDataPro = styled.div`
+background-color: white;
+padding: 0.4em;
+margin: 0.5em;
+width: 90%;
+border-radius: 4px;
+`;
+
+export const H1ProD = styled.h1`
+color: white;
+-webkit-text-stroke: 0.5px black;
+font-family: Roboto, sans-serif;
+font-size: 2em;
+text-align: center;
+padding: 1em;
+`;
+
+export const H3ProD = styled.h3`
+color: black;
+font-size: 2em;
+-webkit-text-stroke: 0.5px white;
+font-family: Roboto, sans-serif;
+letter-spacing: -2px;
+border-bottom: 3px dotted #bbb;
+`;
+
+export const Span = styled.span`
+font-family: Roboto, sans-serif;
+`;
+
+export const Label = styled.label`
+font-family: Roboto, sans-serif;
+`;
+
+export const P = styled.p`
+font-family: Roboto, sans-serif;
+`;
