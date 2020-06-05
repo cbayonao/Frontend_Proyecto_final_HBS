@@ -29,7 +29,13 @@ const Home = () => (
               </thead>
               <Tbody>
                 <Tr>
-                  <Td>11001310502620140058300</Td>
+                  <Td>
+                    <a href="http://example.com">
+                      <div>
+                        11001310502620140058300
+                      </div>
+                    </a>
+                  </Td>
                   <Td>Demandante: XXXXXX - Demandado: XXXXX</Td>
                   <Td>
                     <ButtonHomeBuscar className="Buscar" >Buscar</ButtonHomeBuscar>
