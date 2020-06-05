@@ -45,17 +45,33 @@ class Login extends React.Component {
                             <h1 style={{textAlign: "center"}}>Bienvenido</h1>
                         </div>
                         <DivInputStyle>
-                            <InputStyle onChange={this.handleChange} type="email" name="email" id="InputEmail" placeholder="Ingresa tu Email" />
+                            <InputStyle onChange={this.handleChange}
+                              type="email"
+                              name="email"
+                              id="InputEmail"
+                              placeholder="Ingresa tu Email" />
                         </DivInputStyle>
                         <DivInputStyle>
-                            <InputStyle onChange={this.handleChange} type="password" name="password" id="InputPassword" placeholder="Ingresa tu Contraseña" />
+                            <InputStyle
+                              onChange={this.handleChange}
+                              type="password"
+                              name="pwd"
+                              id="InputPassword"
+                              pattern=".*"
+                              placeholder="Ingresa tu Contraseña" />
                         </DivInputStyle>
                         <DivCheckbox>
-                            <InputCheckbox type="checkbox" name="checkbox-login" id="Inputcheckbox" />
-                            <LabelCheckBox htmlFor="Inputcheckbox">Recuerdame</LabelCheckBox>
+                            <InputCheckbox
+                              type="checkbox"
+                              name="checkbox-login"
+                              id="Inputcheckbox" />
+                            <LabelCheckBox
+                              htmlFor="Inputcheckbox">Recuerdame</LabelCheckBox>
                         </DivCheckbox>
                         <DivButtonLogin>
-                            <ButtonLogin type="button" onClick={this.print}>Ingresa</ButtonLogin>
+                            <ButtonLogin
+                              type="button"
+                              onClick={this.print}>Ingresa</ButtonLogin>
                         </DivButtonLogin>
                     </FormStyle>
                     <div className="Login-Register" style={{margin: '5%'}}>
