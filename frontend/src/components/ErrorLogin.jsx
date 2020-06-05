@@ -10,7 +10,7 @@ export default () => {
 
     return (
         <ErrDiv id="modal-close">
-            <p>Usuario o contraseña Incorrecto</p>
+            <p translate="yes" lang="es"></p>
             <Closed onClick={Close}>&times;</Closed>
         </ErrDiv>
     );
