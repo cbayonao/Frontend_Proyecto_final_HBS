@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
     ButtonLogin,
     LoginStyle,
@@ -32,7 +33,7 @@ class Register extends React.Component {
     print = () => {
         console.log(this.state);
     }
-    //Return implicito
+    
     render() {
         return (
             <LoginStyle style={{ width: '555px' }}>
@@ -47,28 +48,63 @@ class Register extends React.Component {
                     </div>
                     <form>
                         <RDivInputStyle>
-                            <RInputStyle onChange={this.handleChange} type="text" name="name" id="InputName" placeholder="Ingresa tu Nombre" />
-                            <RInputStyle onChange={this.handleChange} type="text" name="lastname" id="InputLastName" placeholder="Ingresa tu Apellido" />
+                            <RInputStyle onChange={this.handleChange}
+                              type="text"
+                              name="name"
+                              id="InputName"
+                              placeholder="Ingresa tu Nombre" required />
+                            <RInputStyle onChange={this.handleChange}
+                              type="text"
+                              name="lastname"
+                              id="InputLastName"
+                              placeholder="Ingresa tu Apellido" required />
                         </RDivInputStyle>
                         <RDivInputStyle>
-                            <RInputStyle onChange={this.handleChange} type="tel" name="mobile" id="InputMobile" placeholder="Ingresa tu # de telefono" />
-                            <RInputStyle onChange={this.handleChange} type="email" name="email" id="InputEmail" placeholder="Ingresa tu Email" />
+                            <RInputStyle onChange={this.handleChange}
+                              type="tel"
+                              name="mobile"
+                              id="InputMobile"
+                              placeholder="Numero de telefono" required />
+                            <RInputStyle onChange={this.handleChange}
+                              type="email"
+                              name="email"
+                              id="InputEmail"
+                              placeholder="Ingresa tu Email" required />
                         </RDivInputStyle>
                         <RDivInputStyle>
-                            <RInputStyle onChange={this.handleChange} type="password" name="pwd" id="pwd" placeholder="Ingresa tu Contraseña" />
-                            <RInputStyle onChange={this.handleChange} type="password" name="cpwd" id="cpwd" placeholder="Verifica tu Contraseña" />
+                            <RInputStyle onChange={this.handleChange}
+                              type="password"
+                              name="pwd"
+                              id="pwd"
+                              placeholder="Ingresa tu Contraseña" required />
+                            <RInputStyle onChange={this.handleChange}
+                              type="password"
+                              name="cpwd"
+                              id="cpwd"
+                              placeholder="Verifica tu Contraseña" required />
                         </RDivInputStyle>
                         <RDivInputStyle>
-                            <RSelect name="type_id" id="type_id" defaultValue={"#"} onChange={this.handleChange}>
+                            <RSelect name="type_id"
+                              id="type_id"
+                              defaultValue={"#"}
+                              onChange={this.handleChange} required>
                                 <option value="#" disabled>Tipo Documento</option>
                                 <option value="CC">Cedula de ciudadania</option>
                                 <option value="CE">Cedula de extranjeria</option>
                                 <option value="P">Pasaporte</option>
                             </RSelect>
-                            <RInputStyle onChange={this.handleChange} type="text" name="id" id="InputId" placeholder="Ingresa tu # de identificacion" />
+                            <RInputStyle
+                              onChange={this.handleChange}
+                              type="text"
+                              name="id"
+                              id="InputId"
+                              placeholder="Ingresa tu # de identificacion" />
                         </RDivInputStyle>
                         <div className="Register-button">
-                            <ButtonLogin style={{ width: '80%', margin: '0 auto' }} type="button" onClick={this.print}>Registrate</ButtonLogin>
+                            <ButtonLogin style={{ width: '80%', margin: '0 auto' }}
+                              type="button"
+                              onClick={this.print}
+                              href="/#/verification">Registrate</ButtonLogin>
                         </div>
                     </form>
                     <RDivInputStyle className="Register-conditions">
