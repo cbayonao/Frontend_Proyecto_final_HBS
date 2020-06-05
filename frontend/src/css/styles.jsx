@@ -119,7 +119,7 @@ transition: all 0.4s;
 border: none;
 overflow: visible;
 border-radius: 5px;
-&:hover ${ButtonLogin} {
+&:hover ${ButtonHomeInpProc} {
     background-color: #44DB0A;
 }
 `;
@@ -219,6 +219,8 @@ display: inline-block;
 font-size: 20px;
 font-family: 'Roboto' sans-serif;
 margin: 5px;
+&:hover ${ButtonHomeBuscar} {
+    background-color: #44DB0A;
 `;
 
 export const ButtonHomeIntesity = styled.div`
@@ -238,6 +240,8 @@ display: inline-block;
 font-size: 20px;
 font-family: 'Roboto' sans-serif;
 margin: 5px;
+&:hover ${ButtonHomeIntesity} {
+    background-color: #FFFF00;
 `;
 
 export const ButtonHomeDelete = styled.div`
@@ -257,6 +261,8 @@ display: inline-block;
 font-size: 20px;
 font-family: 'Roboto' sans-serif;
 margin: 5px;
+&:hover ${ButtonHomeDelete} {
+    background-color: #FF0000;
 `;
 
 export const InputProcHome = styled.input`
