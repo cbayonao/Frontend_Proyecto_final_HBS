@@ -33,6 +33,11 @@ export default () => {
 
     const resendCode = event => {
         if ($("#InputEmail").val() == "") {
+            $("#modal-close").css("display", "flex");
+            $("#modal-close p").text("Debes ingresar un correo");
+            setTimeout(() => {
+                $("#modal-close").css("display", "none");
+            }, 5000);
             $("#InputEmail").focus();
             return;
         }
@@ -45,6 +50,11 @@ export default () => {
 
         user.resendConfirmationCode((err, result) => {
             if (!err) {
+                $("#modal-close").css("display", "flex");
+                $("#modal-close p").text("El codigo fue enviado");
+                setTimeout(() => {
+                    $("#modal-close").css("display", "none");
+                }, 5000);
                 console.log(result);
             }
             else {
