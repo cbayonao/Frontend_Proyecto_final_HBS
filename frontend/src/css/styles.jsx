@@ -107,7 +107,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 0 20px;
-width: 25%;
+width: 50%;
 height: 60px;
 background-color: #39A312;
 font-family: 'Roboto' sans-serif;
@@ -267,14 +267,13 @@ margin: 5px;
 
 export const InputProcHome = styled.input`
 height: 50px;
-padding: 0 25px 0 25px;
+padding: 0 0 0 25px;
 border-radius: 5px;
 font: 400 13.3333px Arial;
 overflow: visible;
-background: transparent;
 outline: none;
 border: 1px solid #e6e6e6;
-width: 100%;
+width: 50%;
 margin: 2%;
-color: white;
+color: black;
 `;
