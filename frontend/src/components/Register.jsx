@@ -15,12 +15,34 @@ export default () => {
         ClientId: '7c6oic7nsjeijr1ck9dsgdak65'
     };
 
+    const showError = (text, height="50px") => {
+        $("#modal-close").css("display", "flex");
+        $("#modal-close").css("height", height);
+        $("#modal-close p").text(text);
+        setTimeout(() => {
+            $("#modal-close").css("display", "none");
+        }, 5000);
+    }
+
     const UserPool = new CognitoUserPool(poolData);
 
     const onSubmit = event => {
         event.preventDefault();
+
         UserPool.signUp(email, password, [], null, (err, data) => {
-            if (err.code === "UsernameExistsException") { window.location.href = "#/"; }
+            console.log(err);
+            if (err.code === "UsernameExistsException") {
+                window.location.href = "#/";
+                showError("El usuario ya existe");
+            }
+            let msg = ""
+            if (err.code === "InvalidParameterException") {
+                if (err.message.includes('password')) {
+                    msg = "La contraseña debe tener una longitud de 8 o mas caracteres, " +
+                        "tambien debe contener mayusculas, numeros, y un caracter especial";
+                }
+                showError(msg, "100px");
+            }
             else { window.location.href = "#/verification"; }
 
         });
