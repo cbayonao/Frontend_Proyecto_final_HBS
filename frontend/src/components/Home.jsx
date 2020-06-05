@@ -10,7 +10,8 @@ import {
   ButtonHomeBuscar,
   ButtonHomeIntesity,
   ButtonHomeDelete,
-  InputProcHome
+  InputProcHome,
+  LabelInputHome
 } from "../css/styles";
 
 //Return implicito
@@ -21,7 +22,7 @@ const Home = () => (
             <TitleHome>Bienvenid@</TitleHome>
           </div>
           <div>
-            <label>Ingresa el numero del proceso (23 digitos):</label>
+            <LabelInputHome>Ingresa el numero del proceso (23 digitos):</LabelInputHome>
           </div>
           <div className="Input-proc">
             <InputProcHome

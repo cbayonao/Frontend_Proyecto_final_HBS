@@ -265,6 +265,12 @@ margin: 5px;
     background-color: #FF0000;
 `;
 
+export const LabelInputHome = styled.label`
+font-size: 25px;
+color: white;
+-webkit-text-stroke: 0.5px black;
+`;
+
 export const InputProcHome = styled.input`
 height: 50px;
 padding: 0 0 0 25px;
@@ -274,6 +280,7 @@ overflow: visible;
 outline: none;
 border: 1px solid #e6e6e6;
 width: 50%;
-margin: 2%;
+margin-top: 5px;
+margin-bottom: 5px;
 color: black;
 `;
