@@ -25,18 +25,14 @@ class Home extends React.Component {
 
   componentDidMount() {
     const user = Pool.getCurrentUser();
-    if (user) {
-      console.log(user);
-    } else {
+    if (!user) {
       window.location.href = "#/";
     }
   }
 
   componentWillUnmount() {
     const user = Pool.getCurrentUser();
-    if (user) {
-      console.log(user);
-    } else {
+    if (!user) {
       window.location.href = "#/";
     }
   }
