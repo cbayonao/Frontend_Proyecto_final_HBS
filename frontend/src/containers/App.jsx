@@ -1,20 +1,16 @@
-import React from 'react';
+import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import Login from '../components/Login';
-import Register from '../components/Register';
-import Verification from '../components/Verification';
-import ErrorLogin from '../components/ErrorLogin';
-import SearchParams from '../components/SearchParams';
-import Home from '../components/Home';
-import getApi from '../hooks/getApi';
-import {
-  GlobalStyle, ImgDiv, OpacityDiv
-} from "../css/styles";
-
+import Login from "../components/Login";
+import Register from "../components/Register";
+import Verification from "../components/Verification";
+import ErrorLogin from "../components/ErrorLogin";
+import SearchParams from "../components/SearchParams";
+import Home from "../components/Home";
+import { useGetData } from "../hooks/getApi";
+import { GlobalStyle, ImgDiv, OpacityDiv } from "../css/styles";
 
 function App() {
-  const data = getApi();
-  console.log(data);
+  useGetData();
   return (
     <HashRouter>
       <ErrorLogin />
