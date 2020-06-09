@@ -31,6 +31,7 @@ export default () => {
 
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
+        data;
         window.location.href = "/#/home";
       },
 
@@ -62,7 +63,7 @@ export default () => {
         </div>
         <FormStyle onSubmit={onSubmit}>
           <div className="Login-titulo">
-            <h1 style={{ textAlign: "center" }}>Bienvenido</h1>
+            <AlignCenter>Bienvenido</AlignCenter>
           </div>
           <DivInputStyle>
             <InputStyle
