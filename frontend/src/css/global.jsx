@@ -6,7 +6,7 @@ export const GlobalStyle = styled.div`
 `;
 
 export const ImgDiv = styled.div`
-  background: url("../../public/images/main.jpg") no-repeat;
+  background: url("!!file!../../public/icons/main.jpg") no-repeat;
   background-size: cover;
   width: 100%;
   min-height: 100vh;
