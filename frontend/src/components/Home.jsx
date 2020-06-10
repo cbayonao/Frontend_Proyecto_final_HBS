@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { LoginStyle, WaitImg } from "../css/global";
+import { LoginStyle } from "../css/global";
 import { RDivInputStyle } from "../css/register";
 import {
   ButtonHomeInpProc,
@@ -10,7 +10,7 @@ import {
 } from "../css/home";
 import { AccountContext } from "./Accounts";
 import ResumeProce from "../components/ResumeProce";
-import { getUser, searchProcess } from "../hooks/getApi";
+import { getUser, searchProcess, getProcesses } from "../hooks/getApi";
 import UserPool from "../UserPool";
 
 //Return implicito
@@ -45,6 +45,10 @@ export default () => {
 
   const addProcess = (event) => {
     event.preventDefault;
+    if (!numeroProceso) {
+      $("#numero").focus();
+      return;
+    }
     getSession().then((session) => {
       searchProcess(
         numeroProceso,
@@ -57,7 +61,7 @@ export default () => {
   return (
     <div>
       {status ? (
-        <LoginStyle className="home" style={{ width: "100%" }}>
+        <LoginStyle className="home" style={{ width: "800px" }}>
           <RDivInputStyle>
             <TitleHome>Bienvenid@</TitleHome>
             <button type="button" onClick={signOut}>
@@ -69,6 +73,8 @@ export default () => {
           </LabelInputHome>
           <InputProcHome
             value={numeroProceso}
+            id="numero"
+            name="numero"
             onChange={(event) => setNumero(event.target.value)}
             type="text"
             placeholder="Numero de Proceso"
@@ -76,9 +82,6 @@ export default () => {
           />
           <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
           <HomeDivTable>
-            <ResumeProce />
-            <ResumeProce />
-            <ResumeProce />
             <ResumeProce />
           </HomeDivTable>
         </LoginStyle>
