@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import FRegister from "../components/FRegister";
+import WaitImg from "../components/Waiting";
 import Verification from "../components/Verification";
 import ErrorLogin from "../components/ErrorLogin";
 import Home from "../components/Home";
@@ -17,6 +18,7 @@ function App() {
         <GlobalStyle>
           <ImgDiv>
             <OpacityDiv>
+              <WaitImg />
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/register" component={Register} />
