@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { ButtonLogin } from "../css/login";
-import { RDivInputStyle, RSelect, RInputStyle } from "../css/register";
+import { ButtonLogin, DivInputStyle, InputStyle } from "../css/login";
 import { FormStyle, LoginStyle, AlignCenter } from "../css/global";
 import UserPool from "../UserPool";
 
@@ -20,7 +19,7 @@ export default () => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    UserPool.signUp(email, password, [], null, (err, data) => {
+    UserPool.signUp(email, password, [], null, (err) => {
       if (err.code === "UsernameExistsException") {
         window.location.href = "#/";
         showError("El usuario ya existe");
@@ -51,8 +50,8 @@ export default () => {
           <AlignCenter>Registro</AlignCenter>
         </div>
         <FormStyle onSubmit={onSubmit}>
-          <RDivInputStyle>
-            <RInputStyle
+          <DivInputStyle>
+            <InputStyle
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               type="email"
@@ -60,7 +59,9 @@ export default () => {
               id="InputEmail"
               placeholder="Ingresa tu Email"
             />
-            <RInputStyle
+          </DivInputStyle>
+          <DivInputStyle>
+            <InputStyle
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               type="password"
@@ -68,7 +69,7 @@ export default () => {
               id="pwd"
               placeholder="Ingresa tu Contraseña"
             />
-          </RDivInputStyle>
+          </DivInputStyle>
 
           <div className="Register-button">
             <ButtonLogin
@@ -78,11 +79,11 @@ export default () => {
               Registrate
             </ButtonLogin>
           </div>
-          <RDivInputStyle className="Register-conditions">
+          <DivInputStyle className="Register-conditions">
             <p style={{ margin: "2.5%" }}>
               Al registrarte aceptas nuestras <a href="/"> condiciones</a>
             </p>
-          </RDivInputStyle>
+          </DivInputStyle>
         </FormStyle>
       </div>
     </LoginStyle>
