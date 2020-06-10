@@ -123,6 +123,7 @@ export const InputProcHome = styled.input`
 
 export const ButtonHomeInpProc = styled.button`
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   padding: 0 20px;
