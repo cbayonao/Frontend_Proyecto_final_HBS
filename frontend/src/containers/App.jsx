@@ -5,9 +5,8 @@ import Register from "../components/Register";
 import FRegister from "../components/FRegister";
 import Verification from "../components/Verification";
 import ErrorLogin from "../components/ErrorLogin";
-import SearchParams from "../components/SearchParams";
 import Home from "../components/Home";
-import { GlobalStyle, ImgDiv, OpacityDiv } from "../css/styles";
+import { GlobalStyle, ImgDiv, OpacityDiv } from "../css/global";
 import { Account } from "../components/Accounts";
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/fregister" component={FRegister} />
                 <Route exact path="/verification" component={Verification} />
-                <Route exact path="/search" component={SearchParams} />
                 <Route exact path="/home" component={Home} />
               </Switch>
             </OpacityDiv>
