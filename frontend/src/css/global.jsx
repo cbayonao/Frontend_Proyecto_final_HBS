@@ -38,6 +38,7 @@ export const LoginStyle = styled.div`
   -webkit-box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.3);
   padding: 2em;
   width: 390px;
+  position: relative;
 `;
 export const AlignCenter = styled.h1`
   text-align: center;
@@ -94,4 +95,32 @@ export const Closed = styled.span`
   &: hover ${Closed} {
     cursor: pointer;
   }
+`;
+
+export const WaitImg = styled.div`
+  background: url("!!file!../../public/icons/cargando.gif") no-repeat;
+  background-size: cover;
+  width: 100px;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 0;
+  margin-top: 10px;
+`;
+
+export const DivWaiting = styled.div`
+  background: #ffffff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.3);
+  padding: 2em;
+  width: 200px;
+  display: none;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
 `;
