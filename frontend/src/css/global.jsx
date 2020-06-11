@@ -6,7 +6,7 @@ export const GlobalStyle = styled.div`
 `;
 
 export const ImgDiv = styled.div`
-  background: url("!!file!../../public/icons/main.jpg") no-repeat;
+  background: url("./assets/main.jpg") no-repeat;
   background-size: cover;
   width: 100%;
   min-height: 100vh;
@@ -98,7 +98,7 @@ export const Closed = styled.span`
 `;
 
 export const WaitImg = styled.div`
-  background: url("!!file!../../public/icons/cargando.gif") no-repeat;
+  background: url("./assets/cargando.gif") no-repeat;
   background-size: cover;
   width: 100px;
   min-height: 100px;
