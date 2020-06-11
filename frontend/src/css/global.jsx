@@ -37,7 +37,8 @@ export const LoginStyle = styled.div`
   border-radius: 10px;
   -webkit-box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.3);
   padding: 2em;
-  width: 390px;
+  width: 100%;
+  max-width: 100%;
   position: relative;
 `;
 export const AlignCenter = styled.h1`
