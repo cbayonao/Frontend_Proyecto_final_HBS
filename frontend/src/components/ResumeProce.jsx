@@ -14,8 +14,8 @@ export function PaintProcess(props) {
         const proc = Object.keys(response).map((process) => {
           return [
             process,
-            response[process]["parties"]["Demandante"],
-            response[process]["parties"]["Demandado"],
+            Object.values(response[process]["parties"])[0].join(", "),
+            Object.values(response[process]["parties"])[1].join(", "),
             response[process]["radicated_at"],
             response[process]["type_proc"],
             session,
