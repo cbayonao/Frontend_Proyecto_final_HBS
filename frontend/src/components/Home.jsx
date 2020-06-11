@@ -12,12 +12,19 @@ import { AccountContext } from "./Accounts";
 import { PaintProcess } from "../components/ResumeProce";
 import { DivProfileImg } from "../css/logout";
 import ProfileImg from "../components/Logout";
-import { searchProcess, deleteProcess, getProcess } from "../hooks/getApi";
+import {
+  searchProcess,
+  deleteProcess,
+  getProcess,
+  getProcesses,
+} from "../hooks/getApi";
 import UserPool from "../UserPool";
+import { light } from "@material-ui/core/styles/createPalette";
 
 //Return implicito
 export default () => {
   const [status, setStatus] = useState(false);
+  const [processes, setProcesses] = useState(false);
   const [numeroProceso, setNumero] = useState("");
   const [processId, setProcessId] = useState("");
 
@@ -26,8 +33,9 @@ export default () => {
   useEffect(() => {
     if (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
+    } else {
+      PaintProcesses();
     }
-    setStatus(true);
   }, []);
 
   const addProcess = (event) => {
@@ -43,24 +51,68 @@ export default () => {
         session.idToken.jwtToken
       ).then((response) => {
         response;
-        setStatus(true);
+        PaintProcesses();
       });
     });
   };
 
   const viewProc = () => {
     getSession().then((session) => {
-      getProcess(processId, session).then((response) => {
-        response;
-        setStatus(true);
-      });
+      getProcess(processId, session).then((response) => {});
     });
   };
 
   const deleteProc = () => {
     getSession().then((session) => {
       deleteProcess(processId, session).then((response) => {
-        response;
+        setStatus(true);
+        PaintProcesses();
+      });
+    });
+  };
+
+  const PaintProcesses = () => {
+    getSession().then((session) => {
+      getProcesses(session).then((response) => {
+        const proc = Object.keys(response).map((process) => {
+          let date = new Date(response[process]["updated_at"]);
+          let demandado, demandante;
+          if (
+            typeof Object.values(response[process]["parties"])[0] === "string"
+          ) {
+            demandante = Object.values(response[process]["parties"])[0];
+          } else {
+            demandante = Object.values(response[process]["parties"])[0].join(
+              ", "
+            );
+          }
+          if (
+            typeof Object.values(response[process]["parties"])[1] === "string"
+          ) {
+            demandado = Object.values(response[process]["parties"])[1];
+          } else {
+            demandado = Object.values(response[process]["parties"])[1].join(
+              ", "
+            );
+          }
+
+          date =
+            date.getFullYear() +
+            "- 0" +
+            (date.getMonth() + 1) +
+            "-" +
+            date.getDate();
+          return [
+            process,
+            demandante,
+            demandado,
+            response[process]["radicated_at"],
+            response[process]["type_proc"],
+            date,
+          ];
+        });
+        setProcesses(proc);
+        setStatus(true);
       });
     });
   };
@@ -70,36 +122,39 @@ export default () => {
     <div>
       {
         <LoginStyle className="home">
-          <RDivInputStyle className="bar">
-            <TitleHome>Bienvenid@</TitleHome>
-            <DivProfileImg>
-              <ProfileImg></ProfileImg>
-            </DivProfileImg>
-          </RDivInputStyle>
-          <LabelInputHome>
-            Ingresa el numero del proceso (23 digitos):
-          </LabelInputHome>
-          <InputProcHome
-            value={numeroProceso}
-            id="numero"
-            name="numero"
-            onChange={(event) => setNumero(event.target.value)}
-            type="text"
-            placeholder="Numero de Proceso"
-            required
-          />
-          <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
-          <HomeDivTable className="processlist">
-            {
-              <PaintProcess
-                view={viewProc}
-                change={chProc}
-                delete={deleteProc}
-                setProcess={setProcessId}
-                render={status}
-              />
-            }
-          </HomeDivTable>
+          <div>
+            <RDivInputStyle className="bar">
+              <TitleHome>Bienvenid@</TitleHome>
+              <DivProfileImg>
+                <ProfileImg></ProfileImg>
+              </DivProfileImg>
+            </RDivInputStyle>
+            <LabelInputHome>
+              Ingresa el numero del proceso (23 digitos):
+            </LabelInputHome>
+            <InputProcHome
+              value={numeroProceso}
+              id="numero"
+              name="numero"
+              onChange={(event) => setNumero(event.target.value)}
+              type="text"
+              placeholder="Numero de Proceso"
+              required
+            />
+            <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
+            <HomeDivTable className="processlist">
+              {
+                <PaintProcess
+                  processes={processes}
+                  view={viewProc}
+                  change={chProc}
+                  delete={deleteProc}
+                  setProcess={setProcessId}
+                  render={status}
+                />
+              }
+            </HomeDivTable>
+          </div>
         </LoginStyle>
       }
     </div>

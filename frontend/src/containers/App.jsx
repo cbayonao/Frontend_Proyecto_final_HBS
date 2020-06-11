@@ -14,21 +14,21 @@ function App() {
   return (
     <Account>
       <HashRouter>
-        <ErrorLogin />
-        <GlobalStyle>
-          <ImgDiv>
-            <OpacityDiv>
-              <WaitImg />
-              <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/fregister" component={FRegister} />
-                <Route exact path="/verification" component={Verification} />
-                <Route exact path="/home" component={Home} />
-              </Switch>
-            </OpacityDiv>
-          </ImgDiv>
-        </GlobalStyle>
+        <GlobalStyle />
+        <ImgDiv
+          className="container"
+          style={{ backgroundImage: "url('./assets/main.jpg')" }}
+        >
+          <ErrorLogin />
+          <WaitImg />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/fregister" component={FRegister} />
+            <Route exact path="/verification" component={Verification} />
+            <Route exact path="/home" component={Home} />
+          </Switch>
+        </ImgDiv>
       </HashRouter>
     </Account>
   );

@@ -1,21 +1,66 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = styled.div`
-  width: 100%;
-  margin: 0 auto;
+export const GlobalStyle = createGlobalStyle`
+  #app {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .container::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+  }
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  .home {
+    position: relative;
+  }
+
+  body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+  }
+
+  body,
+  html {
+      height: 100%;
+      font-family: Ubuntu-Regular, sans-serif;
+  }
 `;
 
 export const ImgDiv = styled.div`
-  background: url("./assets/main.jpg") no-repeat;
-  background-size: cover;
   width: 100%;
   min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 15px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 `;
 
 export const OpacityDiv = styled.div`
@@ -32,13 +77,10 @@ export const FormStyle = styled.form`
 `;
 
 export const LoginStyle = styled.div`
-  text-align: center;
-  margin: 50px auto;
-  border: 1px solid #e7e7e7;
   border-radius: 10px;
-  padding: 50px 50px;
-  background-color: #fff;
-  box-shadow: 5px 5px 5px #280404;
+  overflow: hidden;
+  background: white;
+  padding: 5%;
 `;
 
 export const AlignCenter = styled.h1`

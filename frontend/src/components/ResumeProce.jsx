@@ -1,37 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Process, Buttons, Button } from "../css/process";
 import { Responsive } from "../css/process";
-import { getProcesses } from "../hooks/getApi";
 import { AccountContext } from "./Accounts";
 
 export function PaintProcess(props) {
-  const [processes, setProcesses] = useState([]);
-  const { getSession } = useContext(AccountContext);
-
   if (props.render) {
-    getSession().then((session) => {
-      getProcesses(session).then((response) => {
-        const proc = Object.keys(response).map((process) => {
-          let date = new Date(response[process]["updated_at"]);
-          date =
-            date.getFullYear() +
-            "- 0" +
-            (date.getMonth() + 1) +
-            "-" +
-            date.getDate();
-          return [
-            process,
-            Object.values(response[process]["parties"])[0].join(", "),
-            Object.values(response[process]["parties"])[1].join(", "),
-            response[process]["radicated_at"],
-            response[process]["type_proc"],
-            date,
-          ];
-        });
-        setProcesses(proc);
-      });
-    });
-    return processes.map((process) => {
+    return props.processes.map((process) => {
       return (
         <Process key={process} className={process[0]}>
           <Responsive />

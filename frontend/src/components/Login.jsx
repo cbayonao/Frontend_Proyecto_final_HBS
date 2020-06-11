@@ -82,7 +82,7 @@ export default () => {
               type="password"
               name="password"
               id="InputPassword"
-              placeholder="Ingresa tu Contraseña"
+              placeholder="Ingresa tu Contrase&ntilde;a"
             />
           </DivInputStyle>
           <DivCheckbox>

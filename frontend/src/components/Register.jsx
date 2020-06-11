@@ -28,7 +28,7 @@ export default () => {
       if (err.code === "InvalidParameterException") {
         if (err.message.includes("password")) {
           msg =
-            "La contraseña debe tener una longitud de 8 o mas caracteres, " +
+            "La contrase&na debe tener una longitud de 8 o mas caracteres, " +
             "tambien debe contener mayusculas, numeros, y un caracter especial";
         }
         showError(msg, "100px");
@@ -67,7 +67,7 @@ export default () => {
               type="password"
               name="pwd"
               id="pwd"
-              placeholder="Ingresa tu Contraseña"
+              placeholder="Ingresa tu Contrase&ntilde;a"
             />
           </DivInputStyle>
 

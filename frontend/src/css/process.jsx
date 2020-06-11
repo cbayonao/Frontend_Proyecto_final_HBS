@@ -182,6 +182,11 @@ export const Responsive = createGlobalStyle`
       font-weight: bolder;
     }
 
+    td:nth-of-type(6):before {
+      content: "Actualizado en";
+      font-weight: bolder;
+    }
+
     .home {
       max-width: 600px;
     }
