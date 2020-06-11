@@ -50,8 +50,6 @@ export default function CustomizedMenus() {
     }
     getSession().then((session) => {
       getUser(session).then((response) => {
-        console.log(session.idToken.jwtToken);
-        console.log(session.idToken.payload.sub);
         if (response.status == 400) {
           window.location.href = "#/fregister";
         }
