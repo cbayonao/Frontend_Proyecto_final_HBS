@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -8,9 +8,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ListItemText from "@material-ui/core/ListItemText";
-import { getUser } from "../hooks/getApi";
-import UserPool from "../UserPool";
-import { AccountContext } from "./Accounts";
 
 const StyledMenu = withStyles({
   paper: {
@@ -43,19 +40,6 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function CustomizedMenus() {
-  const { getSession, logout } = useContext(AccountContext);
-  useEffect(() => {
-    if (!UserPool.getCurrentUser()) {
-      window.location.href = "#/";
-    }
-    getSession().then((session) => {
-      getUser(session).then((response) => {
-        if (response.status == 400) {
-          window.location.href = "#/fregister";
-        }
-      });
-    });
-  }, []);
   const signOut = (event) => {
     event.preventDefault;
     logout();
