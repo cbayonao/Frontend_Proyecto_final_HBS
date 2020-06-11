@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const api = 'http://scrawlawapiv1-env.eba-jpcs83r5.us-east-1.elasticbeanstalk.com/api/';
+const api = 'http://scralawlb-689944875.us-east-1.elb.amazonaws.com/api/';
 
 export const useGetData = () => {
     const [mydata, setData] = useState([]);
@@ -46,35 +46,58 @@ export async function searchProcess(process_id, sub, token) {
     const miInit = {
         method: 'POST',
         crossDomain: true,
-        headers: { 'X-MyApp-Authorization': "Bearer " + token, 'Access-Control-Allow-Origin': '*' },
+        headers: { 'X-MyApp-Authorization': "Bearer " + token },
         mode: 'cors',
         cache: 'default'
     };
     $(".waiting").css("display", "flex");
     $(".home").css("z-index", "-1000");
-    setTimeout(async () => {
-        return fetch(api + 'processes/' + process_id + "/" + sub, miInit)
-            .then(response => {
-                if (response.ok) {
-                    $(".home").css("z-index", "1");
-                    $(".waiting").css("display", "none");
-                    location.reload();
-                }
-                console.log(response);
-                return false;
-            })
-    });
+    return fetch(api + 'processes/' + process_id + '/' + sub, miInit).then(function (response) {
+        $(".waiting").css("display", "none");
+        $(".home").css("z-index", "1");
+        return (response);
+    }).catch(function (error) {
+        $(".waiting").css("display", "none");
+        $(".home").css("z-index", "1");
+        error;
+    })
 }
 
 export async function getProcesses(session) {
     const miInit = {
         method: 'GET',
         crossDomain: true,
-        headers: { 'X-MyApp-Authorization': "Bearer " + session.idToken.jwtToken, 'Access-Control-Allow-Origin': '*' },
+        headers: { 'X-MyApp-Authorization': "Bearer " + session.idToken.jwtToken },
         mode: 'cors',
         cache: 'default'
     };
-    return await fetch(api + 'processes/user/' + session.idToken.payload.sub, miInit)
-        .then(response => ((response.ok) ? response.json() : console.log(response)))
+    return fetch(api + 'processes/user/' + session.idToken.payload.sub, miInit)
+        .then(response => ((response.ok) ? response.json() : (response)))
         .then(body => (body["processes"]));
+}
+
+export async function getProcess(process_id, session) {
+    const miInit = {
+        method: 'GET',
+        crossDomain: true,
+        headers: { 'X-MyApp-Authorization': "Bearer " + session.idToken.jwtToken },
+        mode: 'cors',
+        cache: 'default'
+    };
+    return fetch(api + 'processes/' + process_id + '/' + session.idToken.payload.sub, miInit)
+        .then(response => ((response.ok) ? response.json() : (response)))
+        .then(body => (body));
+}
+
+export async function deleteProcess(process_id, session) {
+    const miInit = {
+        method: 'DELETE',
+        crossDomain: true,
+        headers: { 'X-MyApp-Authorization': "Bearer " + session.idToken.jwtToken },
+        mode: 'cors',
+        cache: 'default'
+    };
+    return fetch(api + 'processes/' + process_id + '/' + session.idToken.payload.sub, miInit)
+        .then(response => ((response.ok) ? response.json() : (response)))
+        .then(body => body);
 }
