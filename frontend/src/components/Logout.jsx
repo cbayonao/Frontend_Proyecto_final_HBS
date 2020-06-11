@@ -8,6 +8,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ListItemText from "@material-ui/core/ListItemText";
+import { AccountContext } from "./Accounts";
 
 const StyledMenu = withStyles({
   paper: {
@@ -40,6 +41,7 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 export default function CustomizedMenus() {
+  const { logout } = useContext(AccountContext);
   const signOut = (event) => {
     event.preventDefault;
     logout();
