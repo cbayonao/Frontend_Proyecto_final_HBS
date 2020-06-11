@@ -12,13 +12,20 @@ export function PaintProcess(props) {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
         const proc = Object.keys(response).map((process) => {
+          let date = new Date(response[process]["updated_at"]);
+          date =
+            date.getFullYear() +
+            "- 0" +
+            (date.getMonth() + 1) +
+            "-" +
+            date.getDate();
           return [
             process,
             Object.values(response[process]["parties"])[0].join(", "),
             Object.values(response[process]["parties"])[1].join(", "),
             response[process]["radicated_at"],
             response[process]["type_proc"],
-            session,
+            date,
           ];
         });
         setProcesses(proc);
@@ -36,6 +43,7 @@ export function PaintProcess(props) {
                 <th>Demandado</th>
                 <th>Fecha de Radicacion</th>
                 <th>Tipo de Proceso</th>
+                <th>Actualizado en:</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +53,7 @@ export function PaintProcess(props) {
                 <td>{process[2]}</td>
                 <td>{process[3]}</td>
                 <td>{process[4]}</td>
+                <td>{process[5]}</td>
               </tr>
             </tbody>
           </table>
