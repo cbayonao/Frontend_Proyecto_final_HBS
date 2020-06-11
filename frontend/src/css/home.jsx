@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const TitleHome = styled.h2`
-  text-align: center;
   color: #000;
   font-size: 300%;
+  width: 100%;
 `;
 
 export const TableHome = styled.table`

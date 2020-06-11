@@ -201,5 +201,8 @@ export const Responsive = createGlobalStyle`
     table {
       font-size: 12px;
     }
+    .bar {
+      flex-flow: column-reverse wrap-reverse;
+    }
   }
 `;
