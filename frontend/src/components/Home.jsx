@@ -18,7 +18,6 @@ import UserPool from "../UserPool";
 //Return implicito
 export default () => {
   const [status, setStatus] = useState(false);
-  const [userSession, setSession] = useState({});
   const [numeroProceso, setNumero] = useState("");
   const [processId, setProcessId] = useState("");
 
@@ -28,10 +27,7 @@ export default () => {
     if (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
     }
-    getSession().then((session) => {
-      setSession(session);
-      setStatus(true);
-    });
+    setStatus(true);
   }, []);
 
   const addProcess = (event) => {
@@ -47,7 +43,6 @@ export default () => {
         session.idToken.jwtToken
       ).then((response) => {
         response;
-        setSession(session);
         setStatus(true);
       });
     });
@@ -57,7 +52,6 @@ export default () => {
     getSession().then((session) => {
       getProcess(processId, session).then((response) => {
         response;
-        setSession(session);
         setStatus(true);
       });
     });
@@ -67,7 +61,6 @@ export default () => {
     getSession().then((session) => {
       deleteProcess(processId, session).then((response) => {
         response;
-        setSession(session);
       });
     });
   };
@@ -76,8 +69,8 @@ export default () => {
   return (
     <div>
       {
-        <LoginStyle className="home" style={{ width: "800px" }}>
-          <RDivInputStyle>
+        <LoginStyle className="home">
+          <RDivInputStyle className="bar">
             <TitleHome>Bienvenid@</TitleHome>
             <DivProfileImg>
               <ProfileImg></ProfileImg>
@@ -104,7 +97,6 @@ export default () => {
                 delete={deleteProc}
                 setProcess={setProcessId}
                 render={status}
-                sess={userSession}
               />
             }
           </HomeDivTable>
