@@ -62,13 +62,6 @@ export const Button = styled.button`
 `;
 
 export const Responsive = createGlobalStyle`
-  *, body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
   table {
       width: 100%;
       border-collapse: collapse;  
