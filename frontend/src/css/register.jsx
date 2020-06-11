@@ -28,6 +28,7 @@ export const RDivInputStyle = styled.div`
   background-color: #fff;
   border-radius: 5px;
   margin: 1em 0 1em 0;
+  flex-flow: column-reverse nowrap;
 `;
 export const RSelect = styled.select`
   height: 50px;

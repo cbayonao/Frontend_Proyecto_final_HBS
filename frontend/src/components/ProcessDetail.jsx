@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ProDetail,
   ContainerProDetail,
@@ -6,13 +6,11 @@ import {
   ContainerFlexDataGen,
   H1ProD,
   H3ProD,
-  TitleProDetail,
   ContainerProDetail2,
   ContainerActuacion,
   Span,
   Label,
   P,
-
 } from "../css/styles";
 
 //Return implicito
@@ -83,7 +81,12 @@ const ProccesDetail = () => (
           </div>
           <ContainerDataPro>
             <Label>Detalle de actuacion: </Label>
-            <Span>24 de julio de 2019. Revoca decision. Se remiten al Juzgado con el proceso original que va del folio 1.223 al folio 2.042, el cuaderno N° 1 que va del folio 1 al folio 711, y el cuaderno N° 2 que va del folio 712 al folio 1.222 (Patricia E).﻿</Span>
+            <Span>
+              24 de julio de 2019. Revoca decision. Se remiten al Juzgado con el
+              proceso original que va del folio 1.223 al folio 2.042, el
+              cuaderno N° 1 que va del folio 1 al folio 711, y el cuaderno N° 2
+              que va del folio 712 al folio 1.222 (Patricia E).﻿
+            </Span>
             <a href="#">Mas ...</a>
           </ContainerDataPro>
         </ContainerActuacion>

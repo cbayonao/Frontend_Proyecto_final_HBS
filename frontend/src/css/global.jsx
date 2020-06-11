@@ -71,6 +71,7 @@ export const LoginStyle = styled.div`
   overflow: hidden;
   background: white;
   padding: 5%;
+  box-shadow: 0 0 40px #000;
 `;
 
 export const AlignCenter = styled.h1`
@@ -93,6 +94,8 @@ export const ErrDiv = styled.div`
     -moz-animation: fadeIn ease 2s;
     -o-animation: fadeIn ease 2s;
     -ms-animation: fadeIn ease 2s;
+    border: 1px solid tan;
+    top: 15px;
     }
     @keyframes fadeIn {
     0% {opacity:0;}
