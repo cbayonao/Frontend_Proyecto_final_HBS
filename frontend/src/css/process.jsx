@@ -62,43 +62,50 @@ export const Button = styled.button`
 `;
 
 export const Responsive = createGlobalStyle`
-table {
-    width: 100%;
-    border-collapse: collapse;  
-}
-th {
-background: #333;
-  color: white;
-  font-weight: bold;
-}
-td, th {
-    padding: 6px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
-tr:nth-of-type(odd) {
-    background: #eee;
-}
+  *, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
 
-td:nth-child(2), td:nth-child(3) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 150px;
-}
+  table {
+      width: 100%;
+      border-collapse: collapse;  
+  }
+  th {
+  background: #333;
+    color: white;
+    font-weight: bold;
+  }
+  td, th {
+      padding: 6px;
+      border: 1px solid #ccc;
+      text-align: left;
+  }
+  tr:nth-of-type(odd) {
+      background: #eee;
+  }
 
-.buttons button:nth-child(1) {
-    background-color: rgba(111, 224, 40, 0.96);
-}
+  td:nth-child(2), td:nth-child(3) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 150px;
+  }
 
-.buttons button:nth-child(2) {
-    display: none;
-    background-color: rgba(251, 189, 33, 0.96);
-}
+  .buttons button:nth-child(1) {
+      background-color: rgba(111, 224, 40, 0.96);
+  }
 
-.buttons button:nth-child(3)  {
-    background-color: rgba(234, 40, 14, 0.96);
-}
+  .buttons button:nth-child(2) {
+      display: none;
+      background-color: rgba(251, 189, 33, 0.96);
+  }
+
+  .buttons button:nth-child(3)  {
+      background-color: rgba(234, 40, 14, 0.96);
+  }
 
   @media only screen and (max-width: 760px),
     (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -159,22 +166,40 @@ td:nth-child(2), td:nth-child(3) {
     */
     td:nth-of-type(1):before {
       content: "Numero de Proceso";
+      font-weight: bolder;
     }
 
     td:nth-of-type(2):before {
       content: "Demandante";
+      font-weight: bolder;
     }
 
     td:nth-of-type(3):before {
       content: "Demandado";
+      font-weight: bolder;
     }
 
     td:nth-of-type(4):before {
       content: "Fecha de Radicacion";
+      font-weight: bolder;
     }
 
     td:nth-of-type(5):before {
       content: "Tipo de Proceso";
+      font-weight: bolder;
+    }
+
+    .home {
+      max-width: 600px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .home {
+      max-width: 360px;
+    }
+    table {
+      font-size: 12px;
     }
   }
 `;
