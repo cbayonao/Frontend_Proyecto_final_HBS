@@ -79,6 +79,14 @@ td, th {
 tr:nth-of-type(odd) {
     background: #eee;
 }
+
+td:nth-child(2), td:nth-child(3) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
 .buttons button:nth-child(1) {
     background-color: rgba(111, 224, 40, 0.96);
 }
@@ -134,6 +142,10 @@ tr:nth-of-type(odd) {
       white-space: nowrap;
     }
 
+    
+    td:nth-child(2), td:nth-child(3) {
+      max-width: inherit;
+    }
     .process:hover .buttons {
       display: flex;
       z-index: 1;
