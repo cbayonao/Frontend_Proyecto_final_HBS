@@ -9,39 +9,30 @@ import {
   LabelInputHome,
 } from "../css/home";
 import { AccountContext } from "./Accounts";
-import ResumeProce from "../components/ResumeProce";
-import { getUser, searchProcess, getProcesses } from "../hooks/getApi";
+import { PaintProcess } from "../components/ResumeProce";
+import { DivProfileImg } from "../css/logout";
+import ProfileImg from "../components/Logout";
+import { searchProcess, deleteProcess, getProcess } from "../hooks/getApi";
 import UserPool from "../UserPool";
 
 //Return implicito
 export default () => {
   const [status, setStatus] = useState(false);
+  const [userSession, setSession] = useState({});
   const [numeroProceso, setNumero] = useState("");
+  const [processId, setProcessId] = useState("");
 
-  const { getSession, logout } = useContext(AccountContext);
+  const { getSession } = useContext(AccountContext);
 
   useEffect(() => {
     if (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
     }
     getSession().then((session) => {
-      getUser(session).then((response) => {
-        console.log(session.idToken.jwtToken);
-        console.log(session.idToken.payload.sub);
-        if (response.status == 400) {
-          window.location.href = "#/fregister";
-        }
-      });
+      setSession(session);
       setStatus(true);
     });
   }, []);
-
-  const signOut = (event) => {
-    event.preventDefault;
-    setStatus(false);
-    logout();
-    window.location.href = "#/";
-  };
 
   const addProcess = (event) => {
     event.preventDefault;
@@ -54,19 +45,43 @@ export default () => {
         numeroProceso,
         session.idToken.payload.sub,
         session.idToken.jwtToken
-      );
+      ).then((response) => {
+        response;
+        setSession(session);
+        setStatus(true);
+      });
     });
   };
 
+  const viewProc = () => {
+    getSession().then((session) => {
+      getProcess(processId, session).then((response) => {
+        response;
+        setSession(session);
+        setStatus(true);
+      });
+    });
+  };
+
+  const deleteProc = () => {
+    getSession().then((session) => {
+      deleteProcess(processId, session).then((response) => {
+        response;
+        setSession(session);
+      });
+    });
+  };
+  const chProc = () => {};
+
   return (
     <div>
-      {status ? (
+      {
         <LoginStyle className="home" style={{ width: "800px" }}>
           <RDivInputStyle>
             <TitleHome>Bienvenid@</TitleHome>
-            <button type="button" onClick={signOut}>
-              Salir
-            </button>
+            <DivProfileImg>
+              <ProfileImg></ProfileImg>
+            </DivProfileImg>
           </RDivInputStyle>
           <LabelInputHome>
             Ingresa el numero del proceso (23 digitos):
@@ -81,13 +96,20 @@ export default () => {
             required
           />
           <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
-          <HomeDivTable>
-            <ResumeProce />
+          <HomeDivTable className="processlist">
+            {
+              <PaintProcess
+                view={viewProc}
+                change={chProc}
+                delete={deleteProc}
+                setProcess={setProcessId}
+                render={status}
+                sess={userSession}
+              />
+            }
           </HomeDivTable>
         </LoginStyle>
-      ) : (
-        ""
-      )}
+      }
     </div>
   );
 };
