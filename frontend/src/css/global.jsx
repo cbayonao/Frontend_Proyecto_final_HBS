@@ -32,16 +32,15 @@ export const FormStyle = styled.form`
 `;
 
 export const LoginStyle = styled.div`
-  margin: 0 auto;
-  background: #ffffff;
+  text-align: center;
+  margin: 50px auto;
+  border: 1px solid #e7e7e7;
   border-radius: 10px;
-  -webkit-box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.3);
-  padding: 2em;
-  width: 100%;
-  min-width: 390px;
-  max-width: 900px;
-  position: relative;
+  padding: 50px 50px;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px #280404;
 `;
+
 export const AlignCenter = styled.h1`
   text-align: center;
 `;
