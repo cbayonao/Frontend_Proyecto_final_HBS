@@ -63,21 +63,11 @@ export const ImgDiv = styled.div`
   z-index: 1;
 `;
 
-export const OpacityDiv = styled.div`
-  background: rgba(0, 0, 0, 0.57);
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const FormStyle = styled.form`
   padding: 0 1em 0 1em;
 `;
 
 export const LoginStyle = styled.div`
-  border-radius: 10px;
   overflow: hidden;
   background: white;
   padding: 5%;

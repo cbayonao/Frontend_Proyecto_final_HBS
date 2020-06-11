@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
 import { Process, Buttons, Button } from "../css/process";
 import { Responsive } from "../css/process";
-import { AccountContext } from "./Accounts";
 
 export function PaintProcess(props) {
   if (props.render) {

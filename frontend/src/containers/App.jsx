@@ -7,7 +7,7 @@ import WaitImg from "../components/Waiting";
 import Verification from "../components/Verification";
 import ErrorLogin from "../components/ErrorLogin";
 import Home from "../components/Home";
-import { GlobalStyle, ImgDiv, OpacityDiv } from "../css/global";
+import { GlobalStyle, ImgDiv } from "../css/global";
 import { Account } from "../components/Accounts";
 
 function App() {

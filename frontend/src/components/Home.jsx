@@ -19,7 +19,6 @@ import {
   getProcesses,
 } from "../hooks/getApi";
 import UserPool from "../UserPool";
-import { light } from "@material-ui/core/styles/createPalette";
 
 //Return implicito
 export default () => {
