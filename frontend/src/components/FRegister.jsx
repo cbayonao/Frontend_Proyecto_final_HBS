@@ -1,179 +1,198 @@
-import React, { useState, useContext, useEffect } from "react";
-import {
-  RDivInputStyle,
-  RInputStyle,
-  RSelect,
-  RDivResponsive,
-} from "../css/register";
-import { ButtonLogin } from "../css/login";
-import { FormStyle, LoginStyle, AlignCenter } from "../css/global";
+import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import ListItem from "@material-ui/core/ListItem";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded";
+import ListItemText from "@material-ui/core/ListItemText";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import SettingsIcon from "@material-ui/icons/Settings";
 import { AccountContext } from "./Accounts";
-import { setRegister } from "../hooks/getApi";
-import UserPool from "../UserPool";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    height: "100%",
+    maxWidth: 200,
+    maxHeight: 1000,
+    backgroundColor: theme.palette.background.paper,
+    flexGrow: 1,
+  },
+  button: {
+    marginTop: theme.spacing(2.5),
+    marginBottom: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    maxWidth: 500,
+    maxHeight: 500,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
 export default () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [id_type, setIdType] = useState("");
-  const [id, setId] = useState("");
+  const classes = useStyles();
+  const [tipoId, setTipoID] = React.useState("");
+
   const { getSession } = useContext(AccountContext);
-  const [cel, setCel] = useState("");
 
   useEffect(() => {
-    if (!UserPool.getCurrentUser()) {
-      window.location.href = "#/";
-    }
     getSession().then((session) => {
-      if (!session) {
-        window.location.href = "#/";
-      }
+      searchProcess(
+        numeroProceso,
+        session.idToken.payload.sub,
+        session.idToken.jwtToken
+      ).then((response) => {
+        response;
+        PaintProcesses();
+      });
     });
   });
-  const showError = (text, height = "50px") => {
-    $("#modal-close").css("display", "flex");
-    $("#modal-close").css("height", height);
-    $("#modal-close p").text(text);
-    setTimeout(() => {
-      $("#modal-close").css("display", "none");
-    }, 5000);
-  };
 
-  const validation = () => {
-    let msg = "";
-    if (!nombre) {
-      $("#nombre").focus();
-      msg = "Ingresa tu nombre";
-    }
-    if (!apellido) {
-      $("#apellido").focus();
-      msg = "Ingresa tu apellido";
-    }
-    if (!id_type) {
-      $("#id_type").focus();
-      msg = "Ingresa tu id_type";
-    }
-    if (!id) {
-      $("#id").focus();
-      msg = "Ingresa tu id";
-    }
-    if (!cel || cel.length < 10) {
-      $("#cel").focus();
-      msg = "Ingresa un numero valido";
-    }
-    if (msg) {
-      showError(msg);
-      return false;
-    }
-    return true;
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    let register = {
-      first_name: "",
-      last_name: "",
-      person_id_type: "",
-      person_id: "",
-      e_mail: "",
-      cel: "",
-    };
-    if (validation()) {
-      getSession().then((session) => {
-        register["first_name"] = nombre;
-        register["last_name"] = apellido;
-        register["person_id_type"] = id_type;
-        register["person_id"] = id;
-        register["e_mail"] = session.idToken.payload.email;
-        register["cel"] = cel;
-        setRegister(
-          register,
-          session.idToken.payload.sub,
-          session.idToken.jwtToken
-        );
-      });
-    }
+  const handleChange = (event) => {
+    setTipoID(event.target.value);
   };
 
   return (
-    <LoginStyle style={{ width: "555px" }}>
-      <RDivResponsive />
-      <div className="Register-container">
-        <div className="Register-logo">
-          <figure>
-            <img src="/" alt="" />
-          </figure>
-        </div>
-        <div className="Register-titulo">
-          <AlignCenter>Termina tu registro</AlignCenter>
-        </div>
-        <FormStyle onSubmit={onSubmit}>
-          <RDivInputStyle className="flex">
-            <RInputStyle
-              value={nombre}
-              onChange={(event) => setNombre(event.target.value)}
-              type="text"
-              name="nombre"
-              id="nombre"
-              placeholder="Ingresa tu Nombre"
-            />
-            <RInputStyle
-              value={apellido}
-              onChange={(event) => setApellido(event.target.value)}
-              type="text"
-              name="apellido"
-              id="apellido"
-              placeholder="Ingresa tu Apellido"
-            />
-          </RDivInputStyle>
-          <RDivInputStyle className="flex">
-            <RSelect
-              onChange={(event) => setIdType(event.target.value)}
-              defaultValue="#"
-              id="id_type"
-              name="id_type"
+    <div>
+      <Grid container spacing={3}>
+        <Grid item xs={5}>
+          <Paper elevation={3} className={classes.paper}>
+            <SettingsIcon style={{ fontSize: 50 }} />
+            <h2>Configura los datos de tu cuenta</h2>
+            <ListItem>
+              <TextField id="standard-basic" label="Ingresa tu Nombre" />
+            </ListItem>
+            <ListItem>
+              <TextField id="standard-basic" label="Ingresa tu Apellido" />
+            </ListItem>
+            <ListItem>
+              <Select
+                displayEmpty
+                value={tipoId}
+                onChange={handleChange}
+                renderValue={(selected) => {
+                  if (selected.length === 0) {
+                    return <p>Tipo de identificacion</p>;
+                  }
+                  return selected;
+                }}
+                inputProps={{ "aria-label": "Without label" }}
+              >
+                <MenuItem disabled value="">
+                  <p>Tipo de identificacion</p>
+                </MenuItem>
+                <MenuItem value="CC">
+                  <p>Cedula de Ciudadania</p>
+                </MenuItem>
+                <MenuItem value="CE">
+                  <p>Cedula de Extranjeria</p>
+                </MenuItem>
+                <MenuItem value="PA">
+                  <p>Pasaporte</p>
+                </MenuItem>
+              </Select>
+            </ListItem>
+            <ListItem>
+              <TextField id="standard-basic" label="Numero de identificacion" />
+            </ListItem>
+            <ListItem>
+              <TextField id="standard-basic" label="Numero Telefonico" />
+            </ListItem>
+            <Button
+              className={classes.button}
+              size="large"
+              variant="contained"
+              color="primary"
             >
-              <option value="#" disabled>
-                Selecciona
-              </option>
-              <option value="CC">Cedula de Ciudadania</option>
-              <option value="CE">Cedula de Extranjeria</option>
-              <option value="P">Pasaporte</option>
-            </RSelect>
-            <RInputStyle
-              value={id}
-              onChange={(event) => setId(event.target.value)}
-              type="text"
-              name="id"
-              id="id"
-              placeholder="Ingresa # de Identificacion"
-            />
-          </RDivInputStyle>
-          <RDivInputStyle className="flex">
-            <RInputStyle
-              value={cel}
-              onChange={(event) => setCel(event.target.value)}
-              type="text"
-              name="cel"
-              id="cel"
-              placeholder="Ingresa tu # Celular"
-            />
-          </RDivInputStyle>
-
-          <div className="Register-button">
-            <ButtonLogin
-              style={{ width: "80%", margin: "0 auto" }}
-              type="submit"
-            >
-              Registrate
-            </ButtonLogin>
-          </div>
-          <RDivInputStyle className="Register-conditions">
-            <p style={{ margin: "0 auto", textAlign: "center" }}>
-              Al registrarte aceptas nuestras <a href="#"> condiciones</a>
-            </p>
-          </RDivInputStyle>
-        </FormStyle>
-      </div>
-    </LoginStyle>
+              Actualizar Datos
+            </Button>
+            <Link to="/home">
+              <Button
+                className={classes.button}
+                size="large"
+                variant="contained"
+                color="warn"
+              >
+                Regresar al Home
+              </Button>
+            </Link>
+          </Paper>
+        </Grid>
+        <div></div>
+        <Grid item xs={5}>
+          <Paper elevation={3} className={classes.paper}>
+            <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
+            <h2>Configura los datos de tu cuenta</h2>
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <EmojiPeopleIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary="Nombre" secondary="Camilo" />
+              </ListItem>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <PermContactCalendarIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary="Apellido" secondary="Bayona Orduz" />
+              </ListItem>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <DashboardIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Tipo de identificacion"
+                  secondary="Cedula de Ciudadania"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <FingerprintIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Numero de identificacion"
+                  secondary="1032448740"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <ContactPhoneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Numero telefonico"
+                  secondary="3045477387"
+                />
+              </ListItem>
+            </List>
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
