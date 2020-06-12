@@ -12,12 +12,7 @@ import { AccountContext } from "./Accounts";
 import { PaintProcess } from "../components/ResumeProce";
 import { DivProfileImg } from "../css/logout";
 import ProfileImg from "../components/Logout";
-import {
-  searchProcess,
-  deleteProcess,
-  getProcess,
-  getProcesses,
-} from "../hooks/getApi";
+import { searchProcess, getProcesses } from "../hooks/getApi";
 import UserPool from "../UserPool";
 
 //Return implicito
@@ -25,7 +20,6 @@ export default () => {
   const [status, setStatus] = useState(false);
   const [processes, setProcesses] = useState(false);
   const [numeroProceso, setNumero] = useState("");
-  const [processId, setProcessId] = useState("");
 
   const { getSession } = useContext(AccountContext);
 
@@ -50,21 +44,6 @@ export default () => {
         session.idToken.jwtToken
       ).then((response) => {
         response;
-        PaintProcesses();
-      });
-    });
-  };
-
-  const viewProc = () => {
-    getSession().then((session) => {
-      getProcess(processId, session).then((response) => {});
-    });
-  };
-
-  const deleteProc = () => {
-    getSession().then((session) => {
-      deleteProcess(processId, session).then((response) => {
-        setStatus(true);
         PaintProcesses();
       });
     });
@@ -115,7 +94,6 @@ export default () => {
       });
     });
   };
-  const chProc = () => {};
 
   return (
     <div>
@@ -142,16 +120,7 @@ export default () => {
             />
             <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
             <HomeDivTable className="processlist">
-              {
-                <PaintProcess
-                  processes={processes}
-                  view={viewProc}
-                  change={chProc}
-                  delete={deleteProc}
-                  setProcess={setProcessId}
-                  render={status}
-                />
-              }
+              {<PaintProcess processes={processes} render={status} />}
             </HomeDivTable>
           </div>
         </LoginStyle>
