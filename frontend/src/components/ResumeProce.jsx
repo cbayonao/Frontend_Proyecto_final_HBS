@@ -1,6 +1,7 @@
 import React from "react";
 import { Process, Buttons, Button } from "../css/process";
 import { Responsive } from "../css/process";
+import { Link } from "react-router-dom";
 
 export function PaintProcess(props) {
   if (props.render) {
@@ -30,16 +31,14 @@ export function PaintProcess(props) {
               </tr>
             </tbody>
           </table>
-          <Buttons className="buttons">
-            <Button onClick={(props.setProcess(process[0]), props.view)}>
-              Ver
-            </Button>
-            <Button onClick={(props.setProcess(process[0]), props.change)}>
-              Intensidad de Proceso
-            </Button>
-            <Button onClick={(props.setProcess(process[0]), props.delete)}>
-              Eliminar
-            </Button>
+          <Buttons className="buttons" key={process}>
+            <Link className="childs" to={`/processDetail/${process[0]}`}>
+              <Button className="see">Ver</Button>
+            </Link>
+            <Button className="change">Actualizar</Button>{" "}
+            <Link className="childs" to={`/processDetail/delete/${process[0]}`}>
+              <Button className="delete">Eliminar</Button>
+            </Link>
           </Buttons>
         </Process>
       );
