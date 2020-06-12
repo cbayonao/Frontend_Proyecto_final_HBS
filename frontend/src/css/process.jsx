@@ -55,7 +55,6 @@ export const Button = styled.button`
   height: 50px;
   color: whitesmoke;
   font-weight: bolder;
-  margin: 1%;
   border: none;
   border-radius: 5%;
   cursor: pointer;
@@ -87,16 +86,19 @@ export const Responsive = createGlobalStyle`
     max-width: 150px;
   }
 
-  .buttons button:nth-child(1) {
+  .childs {
+    margin: 1%;
+  }
+
+  .see {
       background-color: rgba(111, 224, 40, 0.96);
   }
 
-  .buttons button:nth-child(2) {
-      display: none;
+  .change {
       background-color: rgba(251, 189, 33, 0.96);
   }
 
-  .buttons button:nth-child(3)  {
+  .delete {
       background-color: rgba(234, 40, 14, 0.96);
   }
 
