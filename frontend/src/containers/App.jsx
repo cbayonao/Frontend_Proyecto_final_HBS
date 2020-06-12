@@ -9,6 +9,10 @@ import ErrorLogin from "../components/ErrorLogin";
 import Home from "../components/Home";
 import { GlobalStyle, ImgDiv } from "../css/global";
 import { Account } from "../components/Accounts";
+import {
+  ProcessDetail,
+  ProcessDetailDelete,
+} from "../components/ProcessDetail";
 
 function App() {
   return (
@@ -27,6 +31,16 @@ function App() {
             <Route exact path="/fregister" component={FRegister} />
             <Route exact path="/verification" component={Verification} />
             <Route exact path="/home" component={Home} />
+            <Route
+              exact
+              path="/processDetail/:processId"
+              component={ProcessDetail}
+            />
+            <Route
+              exact
+              path="/processDetail/delete/:processId"
+              component={ProcessDetailDelete}
+            />
           </Switch>
         </ImgDiv>
       </HashRouter>
