@@ -53,12 +53,22 @@ export default () => {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
         const proc = Object.keys(response).map((process) => {
-          let demandante =
-            Object.values(response[process]["parties"])[0].join(", ") ||
-            Object.values(response[process]["parties"])[0];
-          let demandado =
-            Object.values(response[process]["parties"])[1].join(", ") ||
-            Object.values(response[process]["parties"])[1];
+          let demandante;
+          let demandado;
+          if (Object.values(response[process]["parties"])[0].length > 1) {
+            demandante = Object.values(response[process]["parties"])[0].join(
+              ", "
+            );
+          } else {
+            demandante = Object.values(response[process]["parties"])[0];
+          }
+          if (Object.values(response[process]["parties"])[1].length > 1) {
+            demandado = Object.values(response[process]["parties"])[1].join(
+              ", "
+            );
+          } else {
+            demandado = Object.values(response[process]["parties"])[1];
+          }
           let date = new Date(response[process]["updated_at"]);
           date =
             date.getFullYear() +
