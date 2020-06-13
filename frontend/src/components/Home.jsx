@@ -53,6 +53,12 @@ export default () => {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
         const proc = Object.keys(response).map((process) => {
+          let demandante =
+            Object.values(response[process]["parties"])[0].join(", ") ||
+            Object.values(response[process]["parties"])[0];
+          let demandado =
+            Object.values(response[process]["parties"])[1].join(", ") ||
+            Object.values(response[process]["parties"])[1];
           let date = new Date(response[process]["updated_at"]);
           date =
             date.getFullYear() +
@@ -62,10 +68,8 @@ export default () => {
             date.getDate();
           return [
             process,
-            Object.values(response[process]["parties"])[0].join(", ") ||
-              Object.values(response[process]["parties"])[0],
-            Object.values(response[process]["parties"])[1].join(", ") ||
-              Object.values(response[process]["parties"])[1],
+            demandante,
+            demandado,
             response[process]["radicated_at"],
             response[process]["type_proc"],
             date,
