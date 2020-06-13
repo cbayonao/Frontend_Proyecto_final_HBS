@@ -54,26 +54,6 @@ export default () => {
       getProcesses(session).then((response) => {
         const proc = Object.keys(response).map((process) => {
           let date = new Date(response[process]["updated_at"]);
-          let demandado, demandante;
-          if (
-            typeof Object.values(response[process]["parties"])[0] === "string"
-          ) {
-            demandante = Object.values(response[process]["parties"])[0];
-          } else {
-            demandante = Object.values(response[process]["parties"])[0].join(
-              ", "
-            );
-          }
-          if (
-            typeof Object.values(response[process]["parties"])[1] === "string"
-          ) {
-            demandado = Object.values(response[process]["parties"])[1];
-          } else {
-            demandado = Object.values(response[process]["parties"])[1].join(
-              ", "
-            );
-          }
-
           date =
             date.getFullYear() +
             "- 0" +
@@ -82,8 +62,10 @@ export default () => {
             date.getDate();
           return [
             process,
-            demandante,
-            demandado,
+            Object.values(response[process]["parties"])[0].join(", ") ||
+              Object.values(response[process]["parties"])[0],
+            Object.values(response[process]["parties"])[1].join(", ") ||
+              Object.values(response[process]["parties"])[1],
             response[process]["radicated_at"],
             response[process]["type_proc"],
             date,
