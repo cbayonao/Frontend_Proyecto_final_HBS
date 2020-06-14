@@ -18,7 +18,7 @@ export async function getUser(session) {
         crossDomain: true,
         headers: { 'X-MyApp-Authorization': "Bearer " + session.idToken.jwtToken, 'Access-Control-Allow-Origin': '*' },
         mode: 'cors',
-        cache: 'default'
+        cache: 'default',
     };
     return fetch(api + 'users/' + session.idToken.payload.sub, miInit)
         .then(response => response.ok ? response.json() : response)
@@ -27,20 +27,33 @@ export async function getUser(session) {
 
 
 
+export async function setRegister(sub, token) {
+  const miInit = {
+    method: 'POST',
+    crossDomain: true,
+    headers: { 'X-MyApp-Authorization': "Bearer " + token},
+    mode: 'cors',
+    cache: 'default'
+  };
+  return fetch(api + 'users/' + sub, miInit)
+    .then(response => {
+      return response;
+    })
+}
+
 export async function updateUser(json, sub, token) {
-    const miInit = {
-        method: 'PUT',
-        crossDomain: true,
-        headers: { 'X-MyApp-Authorization': "Bearer " + token, 'Access-Control-Allow-Origin': '*' },
-        body: JSON.stringify(json),
-        mode: 'cors',
-        cache: 'default'
-    };
-    return fetch(api + 'users/' + sub, miInit)
-        .then(response => {
-            if (response.ok) window.location.href = "#/home";
-            return false;
-        })
+  const miInit = {
+    method: 'PUT',
+    crossDomain: true,
+    headers: { 'X-MyApp-Authorization': "Bearer " + token},
+    body: JSON.stringify(json),
+    mode: 'cors',
+    cache: 'default'
+  };
+  return fetch(api + 'users/' + sub, miInit)
+    .then(response => {
+      return response;
+    })
 }
 
 export async function searchProcess(process_id, sub, token) {

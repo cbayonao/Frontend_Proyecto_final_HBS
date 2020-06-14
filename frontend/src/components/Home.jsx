@@ -12,7 +12,7 @@ import { AccountContext } from "./Accounts";
 import { PaintProcess } from "../components/ResumeProce";
 import { DivProfileImg } from "../css/logout";
 import ProfileImg from "../components/Logout";
-import { searchProcess, getProcesses } from "../hooks/getApi";
+import { searchProcess, getProcesses, setRegister, getUser } from "../hooks/getApi";
 import UserPool from "../UserPool";
 
 //Return implicito
@@ -27,6 +27,17 @@ export default () => {
     if (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
     } else {
+      getSession().then(session => {
+	getUser(session).then(response => {
+	  if (response.status === 400) {
+	    setRegister(session.idToken.payload.sub,
+			session.idToken.jwtToken,
+	    ).then(response => {
+	      response;
+	    });
+	  }
+	});
+      })
       PaintProcesses();
     }
   }, []);

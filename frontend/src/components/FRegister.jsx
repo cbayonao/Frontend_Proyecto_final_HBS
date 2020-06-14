@@ -60,18 +60,22 @@ export default () => {
 
   const updateData = () => {
     const data = {
-      first_name: name,
-      last_name: lastName,
-      person_id_type: tipoId,
-      person_id: numberId,
-      cel: numberTel,
+      "first_name": name,
+      "last_name": lastName,
+      "person_id_type": tipoId,
+      "person_id": numberId,
+      "cel": numberTel,
+      "e_mail": ""
     }
     console.log(name, lastName, tipoId, numberId, numberTel);
+    $(".waiting").css("display", "flex");
     getSession().then(session => {
-      updateData(data, session.idToken.payload.sub, session.idToken.jwtToken).then(response => {
+      data["e_mail"] = session.idToken.payload.email;
+      updateUser(data, session.idToken.payload.sub, session.idToken.jwtToken).then(response => {
 	console.log(response);
-	getData();
 	setStatus(false);
+	getData();
+	$(".waiting").css("display", "none");
       });
     });
   }
@@ -80,12 +84,7 @@ export default () => {
     if (!status) {
       getSession().then(session => {
 	getUser(session).then(data => {
-	  if (data.status == 400) {
-	    setDatosPersonales({data: "No hay datos"})
-	  }
-	  else {
-	    setDatosPersonales(data);
-	  }
+	  setDatosPersonales(data);
 	  setStatus(true);
 	});
       });
@@ -121,119 +120,119 @@ export default () => {
                 displayEmpty
                 value={tipoId}
                 onChange={(event) => {
-		setTipoID(event.target.value)}}
+		  setTipoID(event.target.value)}}
                 renderValue={(selected) => {
-                if (selected.length === 0) {
-                return <p>Tipo de identificacion</p>;
-                }
-                return selected;
+                  if (selected.length === 0) {
+                    return <p>Tipo de identificacion</p>;
+                  }
+                  return selected;
                 }}
                 inputProps={{ "aria-label": "Without label" }}
-		>
+	      >
                 <MenuItem disabled value="">
-                <p>Tipo de identificacion</p>
+                  <p>Tipo de identificacion</p>
                 </MenuItem>
                 <MenuItem value="CC">
-                <p>Cedula de Ciudadania</p>
+                  <p>Cedula de Ciudadania</p>
                 </MenuItem>
                 <MenuItem value="CE">
-                <p>Cedula de Extranjeria</p>
+                  <p>Cedula de Extranjeria</p>
                 </MenuItem>
                 <MenuItem value="PA">
-                <p>Pasaporte</p>
+                  <p>Pasaporte</p>
                 </MenuItem>
-		</Select>
-		</ListItem>
-		<ListItem>
-		<TextField label="Numero de identificacion" value={numberId} onChange={(event) => {
+	      </Select>
+	    </ListItem>
+	    <ListItem>
+	      <TextField label="Numero de identificacion" value={numberId} onChange={(event) => {
 		setNumberID(event.target.value)
-		}}/>
-		</ListItem>
-		<ListItem>
-		<TextField label="Numero Telefonico" value={numberTel} onChange={(event) => {
+	      }}/>
+	    </ListItem>
+	    <ListItem>
+	      <TextField label="Numero Telefonico" value={numberTel} onChange={(event) => {
 		setNumberTel(event.target.value)
-		}}/>
-		</ListItem>
-		<Button
-		className={classes.button}
-		size="large"
-		variant="contained"
-		  color="primary"
-		  onClick={updateData}
-		>
-		Actualizar Datos
-		</Button>
-		<Link to="/home">
-		<Button
+	      }}/>
+	    </ListItem>
+	    <Button
+	      className={classes.button}
+	      size="large"
+	      variant="contained"
+	      color="primary"
+	      onClick={updateData}
+	    >
+	      Actualizar Datos
+	    </Button>
+	    <Link to="/home">
+	      <Button
                 className={classes.button}
                 size="large"
                 variant="contained"
                 color="secondary"
-		>
+	      >
                 Regresar al Home
-		</Button>
-		</Link>
-		</Paper>
-		</Grid>
-		<div></div>
-		<Grid item xs={5}>
-		<Paper elevation={3} className={classes.paper}>
-		<PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
-		<h2>Estos son los datos de tu cuenta</h2>
-		<List className={classes.root}>
-		<ListItem>
+	      </Button>
+	    </Link>
+	  </Paper>
+	</Grid>
+	<div></div>
+	<Grid item xs={5}>
+	  <Paper elevation={3} className={classes.paper}>
+	    <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
+	    <h2>Estos son los datos de tu cuenta</h2>
+	    <List className={classes.root}>
+	      <ListItem>
                 <ListItemAvatar>
-                <Avatar>
-                <EmojiPeopleIcon />
-                </Avatar>
+                  <Avatar>
+                    <EmojiPeopleIcon />
+                  </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Nombre" secondary={datosPersonales.data ? "No hay datos" : ""} />
-		</ListItem>
-		<ListItem>
+                <ListItemText primary="Nombre" secondary={datosPersonales.first_name ?  datosPersonales.first_name : "No hay datos"} />
+	      </ListItem>
+	      <ListItem>
                 <ListItemAvatar>
-                <Avatar>
-                <PermContactCalendarIcon />
-                </Avatar>
+                  <Avatar>
+                    <PermContactCalendarIcon />
+                  </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Apellido" secondary={datosPersonales.data ? "No hay datos" : ""} />
-		</ListItem>
-		<ListItem>
+                <ListItemText primary="Apellido" secondary={datosPersonales.last_name ? datosPersonales.last_name : "No hay datos"} />
+	      </ListItem>
+	      <ListItem>
                 <ListItemAvatar>
-                <Avatar>
-                <DashboardIcon />
-                </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                primary="Tipo de identificacion"
-                secondary={datosPersonales.data ? "No hay datos" : ""}
-                />
-		</ListItem>
-		<ListItem>
-                <ListItemAvatar>
-                <Avatar>
-                <FingerprintIcon />
-                </Avatar>
+                  <Avatar>
+                    <DashboardIcon />
+                  </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                primary="Numero de identificacion"
-                secondary={datosPersonales.data ? "No hay datos" : ""}
+                  primary="Tipo de identificacion"
+                  secondary={datosPersonales.person_id_type ? datosPersonales.person_id_type : "No hay datos"}
                 />
-		</ListItem>
-		<ListItem>
+	      </ListItem>
+	      <ListItem>
                 <ListItemAvatar>
-                <Avatar>
-                <ContactPhoneIcon />
-                </Avatar>
+                  <Avatar>
+                    <FingerprintIcon />
+                  </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                primary="Numero telefonico"
-                secondary={datosPersonales.data ? "No hay datos" : ""}
+                  primary="Numero de identificacion"
+                  secondary={datosPersonales.person_id ? datosPersonales.person_id : "No hay datos"}
                 />
-		</ListItem>
-		</List>
-		</Paper>
-		</Grid>
-		</Grid>
-		</div>
+	      </ListItem>
+	      <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <ContactPhoneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Numero telefonico"
+                  secondary={datosPersonales.cel ? datosPersonales.cel : "No hay datos"}
+                />
+	      </ListItem>
+	    </List>
+	  </Paper>
+	</Grid>
+      </Grid>
+    </div>
   );
 };
