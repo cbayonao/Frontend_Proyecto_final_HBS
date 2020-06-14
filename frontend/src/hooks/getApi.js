@@ -43,7 +43,9 @@ export async function updateUser(json, sub, token) {
     const miInit = {
         method: 'PUT',
         crossDomain: true,
-        headers: { 'X-MyApp-Authorization': "Bearer " + token },
+        headers: {
+            'X-MyApp-Authorization': "Bearer " + token, 'Content-Type': 'application/json'
+        },
         body: JSON.stringify(json),
         mode: 'cors',
         cache: 'default'
