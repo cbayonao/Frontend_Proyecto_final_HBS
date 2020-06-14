@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import {getUser, updateUser} from "../hooks/getApi";
 import { makeStyles } from "@material-ui/core/styles";
+import UserPool from "../UserPool";
 import ListItem from "@material-ui/core/ListItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -47,21 +49,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default () => {
   const classes = useStyles();
+  const [name, setName] = React.useState("");
+  const [lastname, setLastName] = React.useState("");
   const [tipoId, setTipoID] = React.useState("");
-
+  const [numberId, setNumberID] = React.useState("");
+  const [numberTel, setNumberTel] = React.useState("");
+  const [datosPersonales, setDatosPersonales] = React.useState({});
   const { getSession } = useContext(AccountContext);
+  const [status, setStatus] = React.useState(false);
+
+  const updateData = (event) => {
+    data = {
+      tier: "",
+      first_name: "",
+      last_name: "",
+      person_id_type: "",
+      person_id: "",
+      email: "",
+      cel: ""
+    }
+  }
 
   useEffect(() => {
-    getSession().then((session) => {
-      searchProcess(
-        numeroProceso,
-        session.idToken.payload.sub,
-        session.idToken.jwtToken
-      ).then((response) => {
-        response;
-        PaintProcesses();
-      });
-    });
+    if (!UserPool.getCurrentUser()) {
+      window.location.href = "#/";
+    }
+    else {
+      if (!status) {
+	getSession().then(session => {
+	  getUser(session).then(data => {
+	    if (data.status == 400) {
+	      setDatosPersonales({data: "No hay datos"})
+	    }
+	    else {
+	      setDatosPersonales(data);
+	    }
+	    setStatus(true);
+	  });
+	});
+      }
+    }
   });
 
   const handleChange = (event) => {
@@ -76,10 +103,10 @@ export default () => {
             <SettingsIcon style={{ fontSize: 50 }} />
             <h2>Configura los datos de tu cuenta</h2>
             <ListItem>
-              <TextField id="standard-basic" label="Ingresa tu Nombre" />
+              <TextField id="standard-basic" label="Ingresa tu Nombre" value={name} />
             </ListItem>
             <ListItem>
-              <TextField id="standard-basic" label="Ingresa tu Apellido" />
+              <TextField id="standard-basic" label="Ingresa tu Apellido" value={lastname} />
             </ListItem>
             <ListItem>
               <Select
@@ -109,10 +136,10 @@ export default () => {
               </Select>
             </ListItem>
             <ListItem>
-              <TextField id="standard-basic" label="Numero de identificacion" />
+              <TextField id="standard-basic" label="Numero de identificacion" value={numberId}/>
             </ListItem>
             <ListItem>
-              <TextField id="standard-basic" label="Numero Telefonico" />
+              <TextField id="standard-basic" label="Numero Telefonico" value={numberTel} />
             </ListItem>
             <Button
               className={classes.button}
@@ -138,7 +165,7 @@ export default () => {
         <Grid item xs={5}>
           <Paper elevation={3} className={classes.paper}>
             <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
-            <h2>Configura los datos de tu cuenta</h2>
+            <h2>Estos son los datos de tu cuenta</h2>
             <List className={classes.root}>
               <ListItem>
                 <ListItemAvatar>
@@ -146,7 +173,7 @@ export default () => {
                     <EmojiPeopleIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Nombre" secondary="Camilo" />
+                <ListItemText primary="Nombre" secondary={datosPersonales.data ? "No hay datos" : ""} />
               </ListItem>
               <ListItem>
                 <ListItemAvatar>
@@ -154,7 +181,7 @@ export default () => {
                     <PermContactCalendarIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Apellido" secondary="Bayona Orduz" />
+                <ListItemText primary="Apellido" secondary={datosPersonales.data ? "No hay datos" : ""} />
               </ListItem>
               <ListItem>
                 <ListItemAvatar>
@@ -164,7 +191,7 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Tipo de identificacion"
-                  secondary="Cedula de Ciudadania"
+                  secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
               </ListItem>
               <ListItem>
@@ -175,7 +202,7 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Numero de identificacion"
-                  secondary="1032448740"
+                  secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
               </ListItem>
               <ListItem>
@@ -186,7 +213,7 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Numero telefonico"
-                  secondary="3045477387"
+                  secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
               </ListItem>
             </List>

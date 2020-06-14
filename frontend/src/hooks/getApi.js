@@ -21,14 +21,15 @@ export async function getUser(session) {
         cache: 'default'
     };
     return fetch(api + 'users/' + session.idToken.payload.sub, miInit)
-        .then(response => response)
+        .then(response => response.ok ? response.json() : response)
         .then(data => (data));
 }
 
 
-export async function setRegister(json, sub, token) {
+
+export async function updateUser(json, sub, token) {
     const miInit = {
-        method: 'POST',
+        method: 'PUT',
         crossDomain: true,
         headers: { 'X-MyApp-Authorization': "Bearer " + token, 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify(json),
