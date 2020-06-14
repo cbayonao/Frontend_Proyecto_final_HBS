@@ -4,6 +4,10 @@ import { Responsive } from "../css/process";
 import { Link } from "react-router-dom";
 
 export function PaintProcess(props) {
+  const handleUpdate = (event) => {
+    $("#numero").val(event.target.id);
+    props.update();
+  };
   if (props.render) {
     return props.processes.map((process) => {
       return (
@@ -35,10 +39,9 @@ export function PaintProcess(props) {
             <Link className="childs" to={`/processDetail/${process[0]}`}>
               <Button className="see">Ver</Button>
             </Link>
-            <Link className="childs" to={`/processDetail/update/${process[0]}`}>
-              <Button className="change">Actualizar</Button>
-            </Link>
-
+            <Button className="change" id={process[0]} onClick={handleUpdate}>
+              Actualizar
+            </Button>
             <Link className="childs" to={`/processDetail/delete/${process[0]}`}>
               <Button className="delete">Eliminar</Button>
             </Link>
