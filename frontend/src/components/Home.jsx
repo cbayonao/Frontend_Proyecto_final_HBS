@@ -24,7 +24,6 @@ import UserPool from "../UserPool";
 export default () => {
   const [status, setStatus] = useState(false);
   const [processes, setProcesses] = useState(false);
-  const [numeroProceso, setNumero] = useState("");
 
   const { getSession } = useContext(AccountContext);
 
@@ -51,19 +50,30 @@ export default () => {
   }, []);
 
   const addProcess = (event) => {
-    event.preventDefault;
-    if (!numeroProceso) {
+    /* event.preventDefault; */
+    if (
+      $("#numero").val() === "" ||
+      $("#numero").val().length < 23 ||
+      $("#numero").val().length > 23 ||
+      isNaN($("#numero").val())
+    ) {
+      $("#modal-close p").text("Digite un número válido");
+      $("#modal-close").css("display", "flex");
+      setTimeout(() => {
+        $("#modal-close").css("display", "none");
+      }, 5000);
       $("#numero").focus();
       return;
     }
     getSession().then((session) => {
       searchProcess(
-        numeroProceso,
+        $("#numero").val(),
         session.idToken.payload.sub,
         session.idToken.jwtToken
       ).then((response) => {
         response;
         PaintProcesses();
+        $("#numero").val("");
       });
     });
   };
@@ -145,17 +155,20 @@ export default () => {
               Ingresa el numero del proceso (23 digitos):
             </LabelInputHome>
             <InputProcHome
-              value={numeroProceso}
               id="numero"
               name="numero"
-              onChange={(event) => setNumero(event.target.value)}
               type="text"
               placeholder="Numero de Proceso"
-              required
             />
             <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
             <HomeDivTable className="processlist">
-              {<PaintProcess processes={processes} render={status} />}
+              {
+                <PaintProcess
+                  processes={processes}
+                  render={status}
+                  update={addProcess}
+                />
+              }
             </HomeDivTable>
           </div>
         </LoginStyle>
