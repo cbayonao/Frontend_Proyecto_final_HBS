@@ -52,7 +52,6 @@ export default () => {
   const PaintProcesses = () => {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
-        console.log(response);
         const proc = Object.keys(response).map((process) => {
           let demandante;
           let demandado;
@@ -61,7 +60,6 @@ export default () => {
               demandado = response[process]["parties"][field];
             }
             if (field.includes("Demandante")) {
-              console.log(field);
               demandante = response[process]["parties"][field];
             }
           });
