@@ -15,6 +15,7 @@ import { LoginStyle } from "../css/global";
 import UserPool from "../UserPool";
 import { AccountContext } from "./Accounts";
 import { deleteProcess, getProcess } from "../hooks/getApi";
+import Button from "@material-ui/core/Button";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -46,6 +47,11 @@ function a11yProps(index) {
   };
 }
 const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: "50%",
@@ -63,7 +69,21 @@ export function ProcessDetail(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState({});
+  const [data, setData] = React.useState({
+    created_at: "",
+    location: "",
+    location_expediente: "",
+    movements: [],
+    office: {},
+    parties: {
+      Demandante: [],
+      Demandado: [],
+    },
+    radicated_at: "",
+    tier: "",
+    type_proc: "",
+    updated_at: "",
+  });
   const { getSession } = useContext(AccountContext);
 
   React.useEffect(() => {
@@ -80,6 +100,19 @@ export function ProcessDetail(props) {
     }
   });
 
+  let demandante;
+  let demandado;
+  if (Object.values(data.parties)[0].length > 1) {
+    demandante = Object.values(data.parties)[0].join(", ");
+  } else {
+    demandante = Object.values(data.parties)[0];
+  }
+  if (Object.values(data.parties)[1].length > 1) {
+    demandado = Object.values(data.parties)[1].join(", ");
+  } else {
+    demandado = Object.values(data.parties)[1];
+  }
+
   const handleChangePanel = (panel) => (event, isExpanded) => {
     event;
     setExpanded(isExpanded ? panel : false);
@@ -92,219 +125,195 @@ export function ProcessDetail(props) {
     setValue(index);
   };
 
-  console.log(data);
-
   if (loading) {
     return $("#waiting").show();
   }
   return (
-    <LoginStyle>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+    <div className={classes.root}>
+      <Button variant="contained" color="secondary" href="#/home">
+        Volver al Home
+      </Button>
+      <LoginStyle>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label="Datos Generales del proceso" {...a11yProps(0)} />
+            <Tab label="Partes del Proceso" {...a11yProps(1)} />
+            <Tab label="Actuaciones del Proceso" {...a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={value}
+          onChangeIndex={handleChangeIndex}
         >
-          <Tab label="Datos Generales del proceso" {...a11yProps(0)} />
-          <Tab label="Partes del Proceso" {...a11yProps(1)} />
-          <Tab label="Actuaciones del Proceso" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <ExpansionPanel
-            expanded={expanded === "panel1"}
-            onChange={handleChangePanel("panel1")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            <ExpansionPanel
+              expanded={expanded === "panel1"}
+              onChange={handleChangePanel("panel1")}
             >
-              <Typography className={classes.heading}>
-                <h4>Fecha de Radicacion</h4>
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                <p>2014-09-09</p>
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel2"}
-            onChange={handleChangePanel("panel2")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Fecha de Radicacion
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>{data.radicated_at}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              expanded={expanded === "panel2"}
+              onChange={handleChangePanel("panel2")}
             >
-              <Typography className={classes.heading}>
-                <h4>Despacho</h4>&nbsp;
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                <p>JUZGADO 026 LABORAL DE BOGOTÁ</p>
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel3"}
-            onChange={handleChangePanel("panel3")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Despacho&nbsp;
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>{data.office.name}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              expanded={expanded === "panel3"}
+              onChange={handleChangePanel("panel3")}
             >
-              <Typography className={classes.heading}>
-                <h4>Ubicacion del expediente</h4>
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                <p>Archivo</p>
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel3"}
-            onChange={handleChangePanel("panel3")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Ubicacion del expediente
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>
+                  {data.location_expediente}
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              expanded={expanded === "panel4"}
+              onChange={handleChangePanel("panel4")}
             >
-              <Typography className={classes.heading}>
-                <h4>Tipo de proceso</h4>
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                <p>De Ejecución</p>
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <h4>Demandante - Parte Activa</h4>
-          <p>ICM INGENIEROS SA</p>
-          <h4>Demandado - Parte Pasiva</h4>
-          <p>MAURICIO ORTIZ BARRERA</p>
-          <h4>Otros - Terceros - Intervinientes</h4>
-          <p>Vacio</p>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <ExpansionPanel
-            expanded={expanded === "panel1"}
-            onChange={handleChangePanel("panel1")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Tipo de proceso
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>{data.type_proc}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <ExpansionPanel
+              expanded={expanded === "panel1"}
+              onChange={handleChangePanel("panel1")}
             >
-              <Typography className={classes.heading}>
-                Auto decide sobre el recurso
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                2019-07-31
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                <h4>Fecha Inicia termino</h4>
-                <p>2019-07-31</p>
-                <h4>Fecha de registro</h4>
-                <p>2019-17-07</p>
-                <h4>Detalle</h4>
-                <p>24 de julio Revoca la decision por X o Y motivo</p>
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel2"}
-            onChange={handleChangePanel("panel2")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2bh-content"
-              id="panel2bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Demandante - Parte Activa
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>{demandante}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              expanded={expanded === "panel2"}
+              onChange={handleChangePanel("panel2")}
             >
-              <Typography className={classes.heading}>
-                Fijacion de Estado &nbsp;
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                17-07-2019
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                Donec placerat, lectus sed mattis semper, neque lectus feugiat
-                lectus, varius pulvinar diam eros in elit. Pellentesque
-                convallis laoreet laoreet.
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel3"}
-            onChange={handleChangePanel("panel3")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3bh-content"
-              id="panel3bh-header"
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  Demandado - Parte pasiva
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}>{demandado}</Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              expanded={expanded === "panel3"}
+              onChange={handleChangePanel("panel3")}
             >
-              <Typography className={classes.heading}>
-                Auto fija fecha audiencia o diligencia &nbsp;
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                17-07-2019
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded={expanded === "panel4"}
-            onChange={handleChangePanel("panel4")}
-          >
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel4bh-content"
-              id="panel4bh-header"
-            >
-              <Typography className={classes.heading}>Al despacho</Typography>
-              <Typography className={classes.secondaryHeading}>
-                10-05-2019
-              </Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </TabPanel>
-      </SwipeableViews>
-    </LoginStyle>
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography component={"span"} className={classes.heading}>
+                  <h4>Otros - Terceros - Intervinientes</h4>
+                </Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography component={"span"}></Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            {data.movements.map((movement, index) => {
+              return (
+                <ExpansionPanel
+                  expanded={expanded === "panel1"}
+                  onChange={handleChangePanel("panel1")}
+                >
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1bh-content"
+                    id="panel1bh-header"
+                  >
+                    <Typography component={"span"} className={classes.heading}>
+                      Actuacion
+                    </Typography>
+                    <Typography
+                      component={"span"}
+                      className={classes.secondaryHeading}
+                    >
+                      {movement.Actuación}
+                    </Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                    <Typography component={"span"}>
+                      Fecha Inicia termino 2019-07-31 Fecha de registro
+                      2019-17-07 Detalle 24 de julio Revoca la decision por X o
+                      Y motivo
+                    </Typography>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              );
+            })}
+          </TabPanel>
+        </SwipeableViews>
+      </LoginStyle>
+    </div>
   );
 }
 

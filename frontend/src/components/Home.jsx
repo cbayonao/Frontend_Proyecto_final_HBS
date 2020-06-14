@@ -52,6 +52,7 @@ export default () => {
   const PaintProcesses = () => {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
+        console.log(response);
         const proc = Object.keys(response).map((process) => {
           let demandante;
           let demandado;
