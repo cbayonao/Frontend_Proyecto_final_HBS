@@ -12,6 +12,7 @@ import {
 import { FormStyle, LoginStyle, AlignCenter } from "../css/global";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "../UserPool";
+import { Link } from "react-router-dom";
 
 export default () => {
   const [email, setEmail] = useState("");
@@ -97,10 +98,13 @@ export default () => {
             <ButtonLogin type="submit">Ingresa</ButtonLogin>
           </DivButtonLogin>
         </FormStyle>
-        <div className="Login-Register" style={{ margin: "5%" }}>
-          <p>
-            No estas registrado? <a href="/#/register"> crea tu cuenta</a>
-          </p>
+        <div className="Login-Register">
+          <Link to="/register">
+            <p>Crea tu cuenta</p>
+          </Link>
+          <Link to="/forgot">
+            <p>Olvidaste tu contraseña</p>
+          </Link>
         </div>
       </div>
     </LoginStyle>
