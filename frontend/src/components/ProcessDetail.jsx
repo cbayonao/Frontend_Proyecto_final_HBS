@@ -104,29 +104,24 @@ export function ProcessDetail(props) {
   let demandado;
   let otros;
 
-
-
   Object.keys(data.parties).map((field) => {
     if (field.includes("Demandado")) {
       if (data.parties[field].length > 1) {
-	demandado = data.parties[field].join(", ");
-      }
-      else {
-	demandado = data.parties[field];
+        demandado = data.parties[field].join(", ");
+      } else {
+        demandado = data.parties[field];
       }
     } else if (field.includes("Demandante")) {
       if (data.parties[field].length > 1) {
-	demandante = data.parties[field].join(", ");
-      }
-      else {
-	demandante = data.parties[field];
+        demandante = data.parties[field].join(", ");
+      } else {
+        demandante = data.parties[field];
       }
     } else {
       if (data.parties[field].length > 1) {
-	otros = data.parties[field].join(", ");
-      }
-      else {
-	otros = data.parties[field];
+        otros = data.parties[field].join(", ");
+      } else {
+        otros = data.parties[field];
       }
     }
   });
@@ -292,15 +287,17 @@ export function ProcessDetail(props) {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography component={"span"}>{otros != null ? otros : "No interviene terceros"}</Typography>
+                <Typography component={"span"}>
+                  {otros != null ? otros : "No interviene terceros"}
+                </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-	    {data.movements.map((actuacion, index) => {
-	      return(
-		<ExpansionPanel
-		  key={index}
+            {data.movements.map((actuacion, index) => {
+              return (
+                <ExpansionPanel
+                  key={index}
                   expanded={expanded === `panel${index}`}
                   onChange={handleChangePanel(`panel${index}`)}
                 >
@@ -316,20 +313,26 @@ export function ProcessDetail(props) {
                       component={"span"}
                       className={classes.secondaryHeading}
                     >
-		      {actuacion.Actuación}
+                      {actuacion.Actuación}
                     </Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
                     <Typography className={classes.heading} component={"span"}>
                       <h4>Anotación:</h4> {actuacion.Anotación}
                     </Typography>
-		    <Typography className={classes.secondaryHeading} component={"span"} >
-		      <h4>Fecha inicia término:</h4> {actuacion["Fecha Inicia Término"] ? actuacion["Fecha Inicia Término"] : "No se registra fecha"}
-		    </Typography>
+                    <Typography
+                      className={classes.secondaryHeading}
+                      component={"span"}
+                    >
+                      <h4>Fecha inicia término:</h4>{" "}
+                      {actuacion["Fecha Inicia Término"]
+                        ? actuacion["Fecha Inicia Término"]
+                        : "No se registra fecha"}
+                    </Typography>
                   </ExpansionPanelDetails>
                 </ExpansionPanel>
-	      )
-	    })}
+              );
+            })}
           </TabPanel>
         </SwipeableViews>
       </LoginStyle>
@@ -340,13 +343,12 @@ export function ProcessDetail(props) {
 export function ProcessDetailDelete(props) {
   if (!UserPool.getCurrentUser()) {
     window.location.href = "#/";
-  }
-  else {
+  } else {
     const { getSession } = useContext(AccountContext);
     getSession().then((session) => {
       deleteProcess(props.match.params.processId, session).then((response) => {
-	response;
-	window.location.href = "#/home";
+        response;
+        window.location.href = "#/home";
       });
     });
   }

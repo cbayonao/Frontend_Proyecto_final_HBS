@@ -26,32 +26,32 @@ export async function getUser(session) {
 }
 
 export async function setRegister(sub, token) {
-  const miInit = {
-    method: 'POST',
-    crossDomain: true,
-    headers: { 'X-MyApp-Authorization': "Bearer " + token},
-    mode: 'cors',
-    cache: 'default'
-  };
-  return fetch(api + 'users/' + sub, miInit)
-    .then(response => {
-      return response;
-    })
+    const miInit = {
+        method: 'POST',
+        crossDomain: true,
+        headers: { 'X-MyApp-Authorization': "Bearer " + token },
+        mode: 'cors',
+        cache: 'default'
+    };
+    return fetch(api + 'users/' + sub, miInit)
+        .then(response => {
+            return response;
+        })
 }
 
 export async function updateUser(json, sub, token) {
-  const miInit = {
-    method: 'PUT',
-    crossDomain: true,
-    headers: { 'X-MyApp-Authorization': "Bearer " + token},
-    body: JSON.stringify(json),
-    mode: 'cors',
-    cache: 'default'
-  };
-  return fetch(api + 'users/' + sub, miInit)
-    .then(response => {
-      return response;
-    })
+    const miInit = {
+        method: 'PUT',
+        crossDomain: true,
+        headers: { 'X-MyApp-Authorization': "Bearer " + token },
+        body: JSON.stringify(json),
+        mode: 'cors',
+        cache: 'default'
+    };
+    return fetch(api + 'users/' + sub, miInit)
+        .then(response => {
+            return response;
+        })
 }
 
 export async function searchProcess(process_id, sub, token) {

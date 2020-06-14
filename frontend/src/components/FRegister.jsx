@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import {getUser, updateUser} from "../hooks/getApi";
+import { getUser, updateUser } from "../hooks/getApi";
 import { makeStyles } from "@material-ui/core/styles";
 import UserPool from "../UserPool";
 import ListItem from "@material-ui/core/ListItem";
@@ -60,39 +60,43 @@ export default () => {
 
   const updateData = () => {
     const data = {
-      "first_name": name,
-      "last_name": lastName,
-      "person_id_type": tipoId,
-      "person_id": numberId,
-      "cel": numberTel,
-      "e_mail": ""
-    }
+      first_name: name,
+      last_name: lastName,
+      person_id_type: tipoId,
+      person_id: numberId,
+      cel: numberTel,
+      e_mail: "",
+    };
     console.log(name, lastName, tipoId, numberId, numberTel);
     $(".waiting").css("display", "flex");
-    getSession().then(session => {
+    getSession().then((session) => {
       data["e_mail"] = session.idToken.payload.email;
-      updateUser(data, session.idToken.payload.sub, session.idToken.jwtToken).then(response => {
-	console.log(response);
-	setStatus(false);
-	getData();
-	$(".waiting").css("display", "none");
+      updateUser(
+        data,
+        session.idToken.payload.sub,
+        session.idToken.jwtToken
+      ).then((response) => {
+        console.log(response);
+        setStatus(false);
+        getData();
+        $(".waiting").css("display", "none");
       });
     });
-  }
+  };
 
   const getData = () => {
     if (!status) {
-      getSession().then(session => {
-	getUser(session).then(data => {
-	  setDatosPersonales(data);
-	  setStatus(true);
-	});
+      getSession().then((session) => {
+        getUser(session).then((data) => {
+          setDatosPersonales(data);
+          setStatus(true);
+        });
       });
     }
-  }
+  };
 
   useEffect(() => {
-    if  (!UserPool.getCurrentUser()) {
+    if (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
     }
     getData();
@@ -106,21 +110,30 @@ export default () => {
             <SettingsIcon style={{ fontSize: 50 }} />
             <h2>Configura los datos de tu cuenta</h2>
             <ListItem>
-              <TextField label="Ingresa tu Nombre" value={name} onChange={(event) => {
-		setName(event.target.value)
-	      }} />
+              <TextField
+                label="Ingresa tu Nombre"
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
             </ListItem>
             <ListItem>
-              <TextField label="Ingresa tu Apellido" value={lastName} onChange={(event) => {
-		setLastName(event.target.value)
-	      }} />
+              <TextField
+                label="Ingresa tu Apellido"
+                value={lastName}
+                onChange={(event) => {
+                  setLastName(event.target.value);
+                }}
+              />
             </ListItem>
             <ListItem>
               <Select
                 displayEmpty
                 value={tipoId}
                 onChange={(event) => {
-		  setTipoID(event.target.value)}}
+                  setTipoID(event.target.value);
+                }}
                 renderValue={(selected) => {
                   if (selected.length === 0) {
                     return <p>Tipo de identificacion</p>;
@@ -128,7 +141,7 @@ export default () => {
                   return selected;
                 }}
                 inputProps={{ "aria-label": "Without label" }}
-	      >
+              >
                 <MenuItem disabled value="">
                   <p>Tipo de identificacion</p>
                 </MenuItem>
@@ -141,62 +154,84 @@ export default () => {
                 <MenuItem value="PA">
                   <p>Pasaporte</p>
                 </MenuItem>
-	      </Select>
-	    </ListItem>
-	    <ListItem>
-	      <TextField label="Numero de identificacion" value={numberId} onChange={(event) => {
-		setNumberID(event.target.value)
-	      }}/>
-	    </ListItem>
-	    <ListItem>
-	      <TextField label="Numero Telefonico" value={numberTel} onChange={(event) => {
-		setNumberTel(event.target.value)
-	      }}/>
-	    </ListItem>
-	    <Button
-	      className={classes.button}
-	      size="large"
-	      variant="contained"
-	      color="primary"
-	      onClick={updateData}
-	    >
-	      Actualizar Datos
-	    </Button>
-	    <Link to="/home">
-	      <Button
+              </Select>
+            </ListItem>
+            <ListItem>
+              <TextField
+                label="Numero de identificacion"
+                value={numberId}
+                onChange={(event) => {
+                  setNumberID(event.target.value);
+                }}
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                label="Numero Telefonico"
+                value={numberTel}
+                onChange={(event) => {
+                  setNumberTel(event.target.value);
+                }}
+              />
+            </ListItem>
+            <Button
+              className={classes.button}
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={updateData}
+            >
+              Actualizar Datos
+            </Button>
+            <Link to="/home">
+              <Button
                 className={classes.button}
                 size="large"
                 variant="contained"
                 color="secondary"
-	      >
+              >
                 Regresar al Home
-	      </Button>
-	    </Link>
-	  </Paper>
-	</Grid>
-	<div></div>
-	<Grid item xs={5}>
-	  <Paper elevation={3} className={classes.paper}>
-	    <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
-	    <h2>Estos son los datos de tu cuenta</h2>
-	    <List className={classes.root}>
-	      <ListItem>
+              </Button>
+            </Link>
+          </Paper>
+        </Grid>
+        <div></div>
+        <Grid item xs={5}>
+          <Paper elevation={3} className={classes.paper}>
+            <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
+            <h2>Estos son los datos de tu cuenta</h2>
+            <List className={classes.root}>
+              <ListItem>
                 <ListItemAvatar>
                   <Avatar>
                     <EmojiPeopleIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Nombre" secondary={datosPersonales.first_name ?  datosPersonales.first_name : "No hay datos"} />
-	      </ListItem>
-	      <ListItem>
+                <ListItemText
+                  primary="Nombre"
+                  secondary={
+                    datosPersonales.first_name
+                      ? datosPersonales.first_name
+                      : "No hay datos"
+                  }
+                />
+              </ListItem>
+              <ListItem>
                 <ListItemAvatar>
                   <Avatar>
                     <PermContactCalendarIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Apellido" secondary={datosPersonales.last_name ? datosPersonales.last_name : "No hay datos"} />
-	      </ListItem>
-	      <ListItem>
+                <ListItemText
+                  primary="Apellido"
+                  secondary={
+                    datosPersonales.last_name
+                      ? datosPersonales.last_name
+                      : "No hay datos"
+                  }
+                />
+              </ListItem>
+              <ListItem>
                 <ListItemAvatar>
                   <Avatar>
                     <DashboardIcon />
@@ -204,10 +239,14 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Tipo de identificacion"
-                  secondary={datosPersonales.person_id_type ? datosPersonales.person_id_type : "No hay datos"}
+                  secondary={
+                    datosPersonales.person_id_type
+                      ? datosPersonales.person_id_type
+                      : "No hay datos"
+                  }
                 />
-	      </ListItem>
-	      <ListItem>
+              </ListItem>
+              <ListItem>
                 <ListItemAvatar>
                   <Avatar>
                     <FingerprintIcon />
@@ -215,10 +254,14 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Numero de identificacion"
-                  secondary={datosPersonales.person_id ? datosPersonales.person_id : "No hay datos"}
+                  secondary={
+                    datosPersonales.person_id
+                      ? datosPersonales.person_id
+                      : "No hay datos"
+                  }
                 />
-	      </ListItem>
-	      <ListItem>
+              </ListItem>
+              <ListItem>
                 <ListItemAvatar>
                   <Avatar>
                     <ContactPhoneIcon />
@@ -226,12 +269,14 @@ export default () => {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Numero telefonico"
-                  secondary={datosPersonales.cel ? datosPersonales.cel : "No hay datos"}
+                  secondary={
+                    datosPersonales.cel ? datosPersonales.cel : "No hay datos"
+                  }
                 />
-	      </ListItem>
-	    </List>
-	  </Paper>
-	</Grid>
+              </ListItem>
+            </List>
+          </Paper>
+        </Grid>
       </Grid>
     </div>
   );
