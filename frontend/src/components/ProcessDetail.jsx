@@ -105,6 +105,7 @@ export function ProcessDetail(props) {
   let otros;
 
 
+
   Object.keys(data.parties).map((field) => {
     if (field.includes("Demandado")) {
       if (data.parties[field].length > 1) {
