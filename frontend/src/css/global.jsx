@@ -5,7 +5,15 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
   }
-  
+  .Login-Register {
+    display: flex;
+    text-align: center;
+    padding: 1%;
+  }
+
+  .Login-Register a{
+    text-decoration: none;
+  }
   .container::before {
     content: "";
     display: block;
