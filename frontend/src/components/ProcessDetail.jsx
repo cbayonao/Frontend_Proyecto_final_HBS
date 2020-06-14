@@ -341,14 +341,14 @@ export function ProcessDetailDelete(props) {
   if (!UserPool.getCurrentUser()) {
     window.location.href = "#/";
   }
-  const { getSession } = useContext(AccountContext);
-
-  getSession().then((session) => {
-    deleteProcess(props.match.params.processId, session).then((response) => {
-      response;
-      window.location.href = "#/home";
+  else {
+    const { getSession } = useContext(AccountContext);
+    getSession().then((session) => {
+      deleteProcess(props.match.params.processId, session).then((response) => {
+	response;
+	window.location.href = "#/home";
+      });
     });
-  });
-
+  }
   return $("#waiting").show();
 }

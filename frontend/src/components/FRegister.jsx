@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
   const classes = useStyles();
   const [name, setName] = React.useState("");
-  const [lastname, setLastName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
   const [tipoId, setTipoID] = React.useState("");
   const [numberId, setNumberID] = React.useState("");
   const [numberTel, setNumberTel] = React.useState("");
@@ -58,42 +58,46 @@ export default () => {
   const { getSession } = useContext(AccountContext);
   const [status, setStatus] = React.useState(false);
 
-  const updateData = (event) => {
-    data = {
-      tier: "",
-      first_name: "",
-      last_name: "",
-      person_id_type: "",
-      person_id: "",
-      email: "",
-      cel: ""
+  const updateData = () => {
+    const data = {
+      first_name: name,
+      last_name: lastName,
+      person_id_type: tipoId,
+      person_id: numberId,
+      cel: numberTel,
+    }
+    console.log(name, lastName, tipoId, numberId, numberTel);
+    getSession().then(session => {
+      updateData(data, session.idToken.payload.sub, session.idToken.jwtToken).then(response => {
+	console.log(response);
+	getData();
+	setStatus(false);
+      });
+    });
+  }
+
+  const getData = () => {
+    if (!status) {
+      getSession().then(session => {
+	getUser(session).then(data => {
+	  if (data.status == 400) {
+	    setDatosPersonales({data: "No hay datos"})
+	  }
+	  else {
+	    setDatosPersonales(data);
+	  }
+	  setStatus(true);
+	});
+      });
     }
   }
 
   useEffect(() => {
-    if (!UserPool.getCurrentUser()) {
+    if  (!UserPool.getCurrentUser()) {
       window.location.href = "#/";
     }
-    else {
-      if (!status) {
-	getSession().then(session => {
-	  getUser(session).then(data => {
-	    if (data.status == 400) {
-	      setDatosPersonales({data: "No hay datos"})
-	    }
-	    else {
-	      setDatosPersonales(data);
-	    }
-	    setStatus(true);
-	  });
-	});
-      }
-    }
+    getData();
   });
-
-  const handleChange = (event) => {
-    setTipoID(event.target.value);
-  };
 
   return (
     <div>
@@ -103,123 +107,133 @@ export default () => {
             <SettingsIcon style={{ fontSize: 50 }} />
             <h2>Configura los datos de tu cuenta</h2>
             <ListItem>
-              <TextField id="standard-basic" label="Ingresa tu Nombre" value={name} />
+              <TextField label="Ingresa tu Nombre" value={name} onChange={(event) => {
+		setName(event.target.value)
+	      }} />
             </ListItem>
             <ListItem>
-              <TextField id="standard-basic" label="Ingresa tu Apellido" value={lastname} />
+              <TextField label="Ingresa tu Apellido" value={lastName} onChange={(event) => {
+		setLastName(event.target.value)
+	      }} />
             </ListItem>
             <ListItem>
               <Select
                 displayEmpty
                 value={tipoId}
-                onChange={handleChange}
+                onChange={(event) => {
+		setTipoID(event.target.value)}}
                 renderValue={(selected) => {
-                  if (selected.length === 0) {
-                    return <p>Tipo de identificacion</p>;
-                  }
-                  return selected;
+                if (selected.length === 0) {
+                return <p>Tipo de identificacion</p>;
+                }
+                return selected;
                 }}
                 inputProps={{ "aria-label": "Without label" }}
-              >
+		>
                 <MenuItem disabled value="">
-                  <p>Tipo de identificacion</p>
+                <p>Tipo de identificacion</p>
                 </MenuItem>
                 <MenuItem value="CC">
-                  <p>Cedula de Ciudadania</p>
+                <p>Cedula de Ciudadania</p>
                 </MenuItem>
                 <MenuItem value="CE">
-                  <p>Cedula de Extranjeria</p>
+                <p>Cedula de Extranjeria</p>
                 </MenuItem>
                 <MenuItem value="PA">
-                  <p>Pasaporte</p>
+                <p>Pasaporte</p>
                 </MenuItem>
-              </Select>
-            </ListItem>
-            <ListItem>
-              <TextField id="standard-basic" label="Numero de identificacion" value={numberId}/>
-            </ListItem>
-            <ListItem>
-              <TextField id="standard-basic" label="Numero Telefonico" value={numberTel} />
-            </ListItem>
-            <Button
-              className={classes.button}
-              size="large"
-              variant="contained"
-              color="primary"
-            >
-              Actualizar Datos
-            </Button>
-            <Link to="/home">
-              <Button
+		</Select>
+		</ListItem>
+		<ListItem>
+		<TextField label="Numero de identificacion" value={numberId} onChange={(event) => {
+		setNumberID(event.target.value)
+		}}/>
+		</ListItem>
+		<ListItem>
+		<TextField label="Numero Telefonico" value={numberTel} onChange={(event) => {
+		setNumberTel(event.target.value)
+		}}/>
+		</ListItem>
+		<Button
+		className={classes.button}
+		size="large"
+		variant="contained"
+		  color="primary"
+		  onClick={updateData}
+		>
+		Actualizar Datos
+		</Button>
+		<Link to="/home">
+		<Button
                 className={classes.button}
                 size="large"
                 variant="contained"
-                color="warn"
-              >
+                color="secondary"
+		>
                 Regresar al Home
-              </Button>
-            </Link>
-          </Paper>
-        </Grid>
-        <div></div>
-        <Grid item xs={5}>
-          <Paper elevation={3} className={classes.paper}>
-            <PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
-            <h2>Estos son los datos de tu cuenta</h2>
-            <List className={classes.root}>
-              <ListItem>
+		</Button>
+		</Link>
+		</Paper>
+		</Grid>
+		<div></div>
+		<Grid item xs={5}>
+		<Paper elevation={3} className={classes.paper}>
+		<PersonOutlineRoundedIcon style={{ fontSize: 50 }} />
+		<h2>Estos son los datos de tu cuenta</h2>
+		<List className={classes.root}>
+		<ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <EmojiPeopleIcon />
-                  </Avatar>
+                <Avatar>
+                <EmojiPeopleIcon />
+                </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary="Nombre" secondary={datosPersonales.data ? "No hay datos" : ""} />
-              </ListItem>
-              <ListItem>
+		</ListItem>
+		<ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <PermContactCalendarIcon />
-                  </Avatar>
+                <Avatar>
+                <PermContactCalendarIcon />
+                </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary="Apellido" secondary={datosPersonales.data ? "No hay datos" : ""} />
-              </ListItem>
-              <ListItem>
+		</ListItem>
+		<ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <DashboardIcon />
-                  </Avatar>
+                <Avatar>
+                <DashboardIcon />
+                </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Tipo de identificacion"
-                  secondary={datosPersonales.data ? "No hay datos" : ""}
+                primary="Tipo de identificacion"
+                secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
-              </ListItem>
-              <ListItem>
+		</ListItem>
+		<ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <FingerprintIcon />
-                  </Avatar>
+                <Avatar>
+                <FingerprintIcon />
+                </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Numero de identificacion"
-                  secondary={datosPersonales.data ? "No hay datos" : ""}
+                primary="Numero de identificacion"
+                secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
-              </ListItem>
-              <ListItem>
+		</ListItem>
+		<ListItem>
                 <ListItemAvatar>
-                  <Avatar>
-                    <ContactPhoneIcon />
-                  </Avatar>
+                <Avatar>
+                <ContactPhoneIcon />
+                </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Numero telefonico"
-                  secondary={datosPersonales.data ? "No hay datos" : ""}
+                primary="Numero telefonico"
+                secondary={datosPersonales.data ? "No hay datos" : ""}
                 />
-              </ListItem>
-            </List>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
+		</ListItem>
+		</List>
+		</Paper>
+		</Grid>
+		</Grid>
+		</div>
   );
 };
