@@ -41,10 +41,11 @@ export default () => {
             ).then((response) => {
               response;
             });
+          } else {
+            PaintProcesses();
           }
         });
       });
-      PaintProcesses();
     }
   }, []);
 
@@ -69,6 +70,7 @@ export default () => {
   const PaintProcesses = () => {
     getSession().then((session) => {
       getProcesses(session).then((response) => {
+        if (!response) return;
         const proc = Object.keys(response).map((process) => {
           let demandante;
           let demandado;
@@ -81,6 +83,7 @@ export default () => {
             }
           });
           let date = new Date(response[process]["updated_at"]);
+          console.log(date);
           date =
             date.getFullYear() +
             "-0" +

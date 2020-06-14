@@ -14,7 +14,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { LoginStyle } from "../css/global";
 import UserPool from "../UserPool";
 import { AccountContext } from "./Accounts";
-import { deleteProcess, getProcess } from "../hooks/getApi";
+import { deleteProcess, getProcess, searchProcess } from "../hooks/getApi";
 import Button from "@material-ui/core/Button";
 
 function TabPanel(props) {
@@ -347,6 +347,21 @@ export function ProcessDetailDelete(props) {
     const { getSession } = useContext(AccountContext);
     getSession().then((session) => {
       deleteProcess(props.match.params.processId, session).then((response) => {
+        response;
+        window.location.href = "#/home";
+      });
+    });
+  }
+  return $("#waiting").show();
+}
+
+export function ProcessDetailUpdate(props) {
+  if (!UserPool.getCurrentUser()) {
+    window.location.href = "#/";
+  } else {
+    const { getSession } = useContext(AccountContext);
+    getSession().then((session) => {
+      searchProcess(props.match.params.processId, session).then((response) => {
         response;
         window.location.href = "#/home";
       });

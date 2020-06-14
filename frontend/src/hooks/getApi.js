@@ -72,7 +72,13 @@ export async function searchProcess(process_id, sub, token) {
         return (response);
     }).catch(function (error) {
         $(".waiting").css("display", "none");
+        $("#modal-close").css("display", "flex");
         $(".home").css("z-index", "1");
+        $("#modal-close p").text("La pagina gubernamental ha fallado, intentalo mas tarde");
+        setTimeout(() => {
+            $("#modal-close").css("display", "none");
+        }, 5000);
+
         error;
     })
 }

@@ -66,7 +66,7 @@ export default () => {
 
   return (
     <LoginStyle>
-      <AlignCenter>Cambiar Contraseña</AlignCenter>
+      <AlignCenter>Recuperar Contraseña</AlignCenter>
       {stage === 1 && (
         <FormStyle onSubmit={sendCode}>
           <DivInputStyle>

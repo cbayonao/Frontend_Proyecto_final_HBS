@@ -35,7 +35,10 @@ export function PaintProcess(props) {
             <Link className="childs" to={`/processDetail/${process[0]}`}>
               <Button className="see">Ver</Button>
             </Link>
-            <Button className="change">Actualizar</Button>{" "}
+            <Link className="childs" to={`/processDetail/update/${process[0]}`}>
+              <Button className="change">Actualizar</Button>
+            </Link>
+
             <Link className="childs" to={`/processDetail/delete/${process[0]}`}>
               <Button className="delete">Eliminar</Button>
             </Link>
