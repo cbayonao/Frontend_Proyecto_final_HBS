@@ -11,7 +11,6 @@ import { GlobalStyle, ImgDiv } from "../css/global";
 import { Account } from "../components/Accounts";
 import {
   ProcessDetail,
-  ProcessDetailUpdate,
   ProcessDetailDelete,
 } from "../components/ProcessDetail";
 import ForgotPassword from "../components/ForgotPassword";
@@ -38,11 +37,6 @@ function App() {
               exact
               path="/processDetail/:processId"
               component={ProcessDetail}
-            />
-            <Route
-              exact
-              path="/processDetail/update/:processId"
-              component={ProcessDetailUpdate}
             />
             <Route
               exact

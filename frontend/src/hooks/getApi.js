@@ -26,9 +26,6 @@ export async function getUser(session) {
 }
 
 export async function setRegister(sub, token, email) {
-    console.log(sub);
-    console.log(token);
-    console.log(email);
     const miInit = {
         method: 'POST',
         crossDomain: true,
