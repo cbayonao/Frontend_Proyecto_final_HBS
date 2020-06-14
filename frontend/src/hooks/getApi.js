@@ -25,8 +25,6 @@ export async function getUser(session) {
         .then(data => (data));
 }
 
-
-
 export async function setRegister(sub, token) {
   const miInit = {
     method: 'POST',
