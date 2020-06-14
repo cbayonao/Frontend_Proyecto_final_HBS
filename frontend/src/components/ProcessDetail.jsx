@@ -16,6 +16,8 @@ import UserPool from "../UserPool";
 import { AccountContext } from "./Accounts";
 import { deleteProcess, getProcess, searchProcess } from "../hooks/getApi";
 import Button from "@material-ui/core/Button";
+import { useEffect } from "react";
+import { WaitImg, DivWaiting } from "../css/global";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -348,22 +350,7 @@ export function ProcessDetailDelete(props) {
     getSession().then((session) => {
       deleteProcess(props.match.params.processId, session).then((response) => {
         response;
-        window.location.href = "#/home";
-      });
-    });
-  }
-  return $("#waiting").show();
-}
-
-export function ProcessDetailUpdate(props) {
-  if (!UserPool.getCurrentUser()) {
-    window.location.href = "#/";
-  } else {
-    const { getSession } = useContext(AccountContext);
-    getSession().then((session) => {
-      searchProcess(props.match.params.processId, session).then((response) => {
-        response;
-        window.location.href = "#/home";
+        props.history.push("/home");
       });
     });
   }
