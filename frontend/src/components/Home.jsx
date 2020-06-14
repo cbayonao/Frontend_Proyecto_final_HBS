@@ -83,41 +83,45 @@ export default () => {
               demandante = response[process]["parties"][field];
             }
           });
-          let date = new Date(response[process]["updated_at"]);
-          console.log(date);
-          date = date.getFullYear();
-          if (date.getMonth() + 1 < 10) {
-            date += "-0" + (date.getMonth() + 1);
-          } else {
-            date += "-" + (date.getMonth() + 1);
-          }
-          if (date.getDate() < 10) {
-            date += "-0" + date.getDate() + " ";
-          } else {
-            date += "-" + date.getDate() + " ";
-          }
-          if (date.getHours() < 10) {
-            date += "0" + date.getHours() + ":";
-          } else {
-            date += "-" + date.getHours() + ":";
-          }
-          if (date.getMinutes() < 10) {
-            date += "0" + date.getMinutes() + ":";
-          } else {
-            date += date.getMinutes() + ":";
-          }
-          if (date.getSeconds() < 10) {
-            date += "0" + date.getSeconds() + ":";
-          } else {
-            date += date.getSeconds() + ":";
-          }
+          let new_date = new Date(response[process]["updated_at"]);
+          const year = new_date.getFullYear();
+          const month =
+            new_date.getMonth() + 1 < 10
+              ? "0" + (new_date.getMonth() + 1)
+              : new_date.getMonth() + 1;
+          const day =
+            new_date.getDate() < 10
+              ? "0" + new_date.getDate()
+              : new_date.getDate();
+          const hours =
+            new_date.getHours() < 10
+              ? "0" + new_date.getHours()
+              : new_date.getHours();
+          const minutes =
+            new_date.getMinutes() < 10
+              ? "0" + new_date.getMinutes()
+              : new_date.getMinutes();
+          const seconds =
+            new_date.getSeconds() < 10
+              ? "0" + new_date.getSeconds()
+              : new_date.getSeconds();
           return [
             process,
             demandante,
             demandado,
             response[process]["radicated_at"],
             response[process]["type_proc"],
-            date,
+            year +
+              "-" +
+              month +
+              "-" +
+              day +
+              " " +
+              hours +
+              ":" +
+              minutes +
+              ":" +
+              seconds,
           ];
         });
         setProcesses(proc);
