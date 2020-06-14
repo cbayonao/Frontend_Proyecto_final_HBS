@@ -22,14 +22,18 @@ export async function getUser(session) {
     };
     return fetch(api + 'users/' + session.idToken.payload.sub, miInit)
         .then(response => response.ok ? response.json() : response)
-        .then(data => (data));
+        .catch(err => err);
 }
 
-export async function setRegister(sub, token) {
+export async function setRegister(sub, token, email) {
+    console.log(sub);
+    console.log(token);
+    console.log(email);
     const miInit = {
         method: 'POST',
         crossDomain: true,
-        headers: { 'X-MyApp-Authorization': "Bearer " + token },
+        headers: { 'X-MyApp-Authorization': "Bearer " + token, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ "e_mail": email }),
         mode: 'cors',
         cache: 'default'
     };

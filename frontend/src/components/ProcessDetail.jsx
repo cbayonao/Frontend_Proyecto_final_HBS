@@ -283,7 +283,7 @@ export function ProcessDetail(props) {
                 id="panel1bh-header"
               >
                 <Typography component={"span"} className={classes.heading}>
-                  <h4>Otros - Terceros - Intervinientes</h4>
+                  Otros - Terceros - Intervinientes
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>

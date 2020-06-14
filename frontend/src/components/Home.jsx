@@ -37,7 +37,8 @@ export default () => {
           if (response.status === 400) {
             setRegister(
               session.idToken.payload.sub,
-              session.idToken.jwtToken
+              session.idToken.jwtToken,
+              session.idToken.payload.email
             ).then((response) => {
               response;
             });
@@ -84,12 +85,32 @@ export default () => {
           });
           let date = new Date(response[process]["updated_at"]);
           console.log(date);
-          date =
-            date.getFullYear() +
-            "-0" +
-            (date.getMonth() + 1) +
-            "-" +
-            date.getDate();
+          date = date.getFullYear();
+          if (date.getMonth() + 1 < 10) {
+            date += "-0" + (date.getMonth() + 1);
+          } else {
+            date += "-" + (date.getMonth() + 1);
+          }
+          if (date.getDate() < 10) {
+            date += "-0" + date.getDate() + " ";
+          } else {
+            date += "-" + date.getDate() + " ";
+          }
+          if (date.getHours() < 10) {
+            date += "0" + date.getHours() + ":";
+          } else {
+            date += "-" + date.getHours() + ":";
+          }
+          if (date.getMinutes() < 10) {
+            date += "0" + date.getMinutes() + ":";
+          } else {
+            date += date.getMinutes() + ":";
+          }
+          if (date.getSeconds() < 10) {
+            date += "0" + date.getSeconds() + ":";
+          } else {
+            date += date.getSeconds() + ":";
+          }
           return [
             process,
             demandante,
