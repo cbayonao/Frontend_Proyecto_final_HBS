@@ -102,16 +102,33 @@ export function ProcessDetail(props) {
 
   let demandante;
   let demandado;
-  if (Object.values(data.parties)[0].length > 1) {
-    demandante = Object.values(data.parties)[0].join(", ");
-  } else {
-    demandante = Object.values(data.parties)[0];
-  }
-  if (Object.values(data.parties)[1].length > 1) {
-    demandado = Object.values(data.parties)[1].join(", ");
-  } else {
-    demandado = Object.values(data.parties)[1];
-  }
+  let otros;
+
+
+  Object.keys(data.parties).map((field) => {
+    if (field.includes("Demandado")) {
+      if (data.parties[field].length > 1) {
+	demandado = data.parties[field].join(", ");
+      }
+      else {
+	demandado = data.parties[field];
+      }
+    } else if (field.includes("Demandante")) {
+      if (data.parties[field].length > 1) {
+	demandante = data.parties[field].join(", ");
+      }
+      else {
+	demandante = data.parties[field];
+      }
+    } else {
+      if (data.parties[field].length > 1) {
+	otros = data.parties[field].join(", ");
+      }
+      else {
+	otros = data.parties[field];
+      }
+    }
+  });
 
   const handleChangePanel = (panel) => (event, isExpanded) => {
     event;
@@ -274,16 +291,17 @@ export function ProcessDetail(props) {
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography component={"span"}></Typography>
+                <Typography component={"span"}>{otros != null ? otros : "No interviene terceros"}</Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            {data.movements.map((movement, index) => {
-              return (
-                <ExpansionPanel
-                  expanded={expanded === "panel1"}
-                  onChange={handleChangePanel("panel1")}
+	    {data.movements.map((actuacion, index) => {
+	      return(
+		<ExpansionPanel
+		  key={index}
+                  expanded={expanded === `panel${index}`}
+                  onChange={handleChangePanel(`panel${index}`)}
                 >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -291,25 +309,26 @@ export function ProcessDetail(props) {
                     id="panel1bh-header"
                   >
                     <Typography component={"span"} className={classes.heading}>
-                      Actuacion
+                      {actuacion["Fecha de Actuación"]}
                     </Typography>
                     <Typography
                       component={"span"}
                       className={classes.secondaryHeading}
                     >
-                      {movement.Actuación}
+		      {actuacion.Actuación}
                     </Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
-                    <Typography component={"span"}>
-                      Fecha Inicia termino 2019-07-31 Fecha de registro
-                      2019-17-07 Detalle 24 de julio Revoca la decision por X o
-                      Y motivo
+                    <Typography className={classes.heading} component={"span"}>
+                      <h4>Anotación:</h4> {actuacion.Anotación}
                     </Typography>
+		    <Typography className={classes.secondaryHeading} component={"span"} >
+		      <h4>Fecha inicia término:</h4> {actuacion["Fecha Inicia Término"] ? actuacion["Fecha Inicia Término"] : "No se registra fecha"}
+		    </Typography>
                   </ExpansionPanelDetails>
                 </ExpansionPanel>
-              );
-            })}
+	      )
+	    })}
           </TabPanel>
         </SwipeableViews>
       </LoginStyle>

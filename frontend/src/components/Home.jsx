@@ -56,24 +56,19 @@ export default () => {
         const proc = Object.keys(response).map((process) => {
           let demandante;
           let demandado;
-          if (Object.values(response[process]["parties"])[0].length > 1) {
-            demandante = Object.values(response[process]["parties"])[0].join(
-              ", "
-            );
-          } else {
-            demandante = Object.values(response[process]["parties"])[0];
-          }
-          if (Object.values(response[process]["parties"])[1].length > 1) {
-            demandado = Object.values(response[process]["parties"])[1].join(
-              ", "
-            );
-          } else {
-            demandado = Object.values(response[process]["parties"])[1];
-          }
+          Object.keys(response[process]["parties"]).map((field) => {
+            if (field.includes("Demandado")) {
+              demandado = response[process]["parties"][field];
+            }
+            if (field.includes("Demandante")) {
+              console.log(field);
+              demandante = response[process]["parties"][field];
+            }
+          });
           let date = new Date(response[process]["updated_at"]);
           date =
             date.getFullYear() +
-            "- 0" +
+            "-0" +
             (date.getMonth() + 1) +
             "-" +
             date.getDate();
