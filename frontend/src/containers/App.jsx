@@ -13,6 +13,7 @@ import {
   ProcessDetail,
   ProcessDetailDelete,
 } from "../components/ProcessDetail";
+import ForgotPassword from "../components/ForgotPassword";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route exact path="/fregister" component={FRegister} />
             <Route exact path="/verification" component={Verification} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/forgot" component={ForgotPassword} />
             <Route
               exact
               path="/processDetail/:processId"
