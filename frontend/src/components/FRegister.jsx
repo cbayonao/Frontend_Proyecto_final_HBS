@@ -59,15 +59,22 @@ export default () => {
   const [status, setStatus] = React.useState(false);
 
   const updateData = () => {
-    const data = {
-      first_name: name,
-      last_name: lastName,
-      person_id_type: tipoId,
-      person_id: numberId,
-      cel: numberTel,
-      e_mail: "",
-    };
-    console.log(name, lastName, tipoId, numberId, numberTel);
+    const data = {};
+    if (name) {
+      data["first_name"] = name;
+    }
+    if (lastName) {
+      data["last_name"] = lastName;
+    }
+    if (tipoId) {
+      data["person_id_type"] = tipoId;
+    }
+    if (numberId) {
+      data["person_id"] = numberId;
+    }
+    if (numberTel) {
+      data["cel"] = numberTel;
+    }
     $(".waiting").css("display", "flex");
     getSession().then((session) => {
       data["e_mail"] = session.idToken.payload.email;
@@ -76,7 +83,6 @@ export default () => {
         session.idToken.payload.sub,
         session.idToken.jwtToken
       ).then((response) => {
-        console.log(response);
         setStatus(false);
         getData();
         $(".waiting").css("display", "none");
