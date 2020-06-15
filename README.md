@@ -27,8 +27,7 @@ Click Me!
 
 
 ## Authors
----
-### Collaborators
+
 #### [Miguel Angel Parada](http://miguel-canon.me/) :bowtie:
 #### [Camilo Bayona Orduz](https://www.bayona.me/) :yum:
 #### [Jhoan Zamora Caicedo](http://me.jzamora.tech/)  :neckbeard:
