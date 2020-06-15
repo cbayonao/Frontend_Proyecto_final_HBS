@@ -20,6 +20,6 @@ npm run build
 ## Authors
 ---
 ### Collaborators
-#### [Camilo Bayona Orduz](https://www.bayona.me/) :yum:
 #### [Miguel Angel Parada](http://miguel-canon.me/) :bowtie:
+#### [Camilo Bayona Orduz](https://www.bayona.me/) :yum:
 #### [Jhoan Zamora](http://me.jzamora.tech/)  :neckbeard:
