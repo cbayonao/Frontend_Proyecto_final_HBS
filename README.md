@@ -22,7 +22,7 @@ npm run build
 
 ## Project deployed
 
-#### [scrapLaw](raplawv1.s3-website-us-east-1.amazonaws.com)
+#### [scrapLaw](http://scraplawv1.s3-website-us-east-1.amazonaws.com/#/)
 Click Me!
 
 
