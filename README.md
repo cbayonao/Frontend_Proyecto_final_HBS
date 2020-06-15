@@ -1,7 +1,10 @@
 # Procesos Web
 
-This is the repository to store the scraplaw frontend, a system so that you can have in Colombia the legal processes managed in one place, made in reactJS
+This is the repository to store the scraplaw frontend, a system so that you can have in Colombia the legal processes managed in one place.
 
+Frontend code is built with ReactJS, Styled Components, amazon-cognito-identity-js, react-router-dom, react-swipeable-views
+
+![enter image description here](https://i.ibb.co/6Bz8XXP/myimage.png)
 
 ## How to start it
 
