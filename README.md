@@ -20,6 +20,12 @@ The build is minified and the filenames include the hashes.
 npm run build
 ```
 
+## Project deployed
+
+#### [scrapLaw](raplawv1.s3-website-us-east-1.amazonaws.com)
+Click Me!
+
+
 ## Authors
 ---
 ### Collaborators
