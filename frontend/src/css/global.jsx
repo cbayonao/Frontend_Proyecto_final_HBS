@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   .Login-Register {
     display: flex;
     text-align: center;
-    padding: 1%;
+    padding: 5%;
   }
 
   .Login-Register a{
