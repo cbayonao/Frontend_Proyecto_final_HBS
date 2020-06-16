@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from "styled-components";
 
 export const LandingStyle = createGlobalStyle`
 .slider {
@@ -28,9 +27,6 @@ export const LandingStyle = createGlobalStyle`
 @media (max-width: 730px) {
   .slider > ul > li > div {
     flex-flow: column-reverse wrap;
-  }
-  .slider li {
-    width: 33%;
   }
 }
 .slider > ul > li > div {
