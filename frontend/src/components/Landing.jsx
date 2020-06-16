@@ -167,7 +167,7 @@ export default function Landing() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://firebasestorage.googleapis.com/v0/b/bayona-me.appspot.com/o/tablet.png?alt=media&token=a7a54b9f-1ea2-4e7f-989a-8302ec525d97"
+                    image="https://scraplawv1.s3.amazonaws.com/images/tablet-min.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
@@ -202,7 +202,7 @@ export default function Landing() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://firebasestorage.googleapis.com/v0/b/bayona-me.appspot.com/o/Images2.png?alt=media&token=8bea6d27-7c71-400a-a1b6-7670838b92f1"
+                    image="https://scraplawv1.s3.amazonaws.com/images/Images2-min.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
