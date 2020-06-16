@@ -7,6 +7,7 @@ import WaitImg from "../components/Waiting";
 import Verification from "../components/Verification";
 import ErrorLogin from "../components/ErrorLogin";
 import Home from "../components/Home";
+import Landing from "../components/Landing";
 import { GlobalStyle, ImgDiv } from "../css/global";
 import { Account } from "../components/Accounts";
 import {
@@ -27,7 +28,8 @@ function App() {
           <ErrorLogin />
           <WaitImg />
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/fregister" component={FRegister} />
             <Route exact path="/verification" component={Verification} />

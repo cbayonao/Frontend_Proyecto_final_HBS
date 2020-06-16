@@ -103,7 +103,7 @@ export default () => {
 
   useEffect(() => {
     if (!UserPool.getCurrentUser()) {
-      window.location.href = "#/";
+      window.location.href = "#/login";
     }
     getData();
   });

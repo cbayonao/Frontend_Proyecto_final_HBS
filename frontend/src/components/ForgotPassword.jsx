@@ -51,7 +51,7 @@ export default () => {
     getUser().confirmPassword(code, password, {
       onSuccess: (data) => {
         console.log("onSuccess:", data);
-        window.location.href = "#/";
+        window.location.href = "#/login";
       },
       onFailure: (err) => {
         console.log(err);

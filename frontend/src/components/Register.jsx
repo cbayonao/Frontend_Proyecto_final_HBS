@@ -21,7 +21,7 @@ export default () => {
 
     UserPool.signUp(email, password, [], null, (err) => {
       if (err.code === "UsernameExistsException") {
-        window.location.href = "#/";
+        window.location.href = "#/login";
         showError("El usuario ya existe");
       }
       let msg = "";

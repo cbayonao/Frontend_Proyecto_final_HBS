@@ -29,7 +29,7 @@ export default () => {
 
   useEffect(() => {
     if (!UserPool.getCurrentUser()) {
-      window.location.href = "#/";
+      window.location.href = "#/login";
     } else {
       getSession().then((session) => {
         getUser(session).then((response) => {

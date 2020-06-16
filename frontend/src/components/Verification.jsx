@@ -21,7 +21,7 @@ export default () => {
 
     user.confirmRegistration(code, true, (err, result) => {
       if (!err) {
-        window.location.href = "/#/";
+        window.location.href = "/#/login";
       } else {
         $("#modal-close").css("display", "flex");
         $("#modal-close p").text(
