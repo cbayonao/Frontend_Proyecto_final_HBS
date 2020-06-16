@@ -13,9 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import {LandingStyle} from "../css/LandingStyle";
-
-
+import { LandingStyle } from "../css/LandingStyle";
 
 function Copyright() {
   return (
@@ -33,7 +31,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-
+    width: "100%",
   },
   icon: {
     marginRight: theme.spacing(2),
@@ -91,25 +89,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function Landing() {
   const classes = useStyles();
   const [data, setData] = React.useState([]);
   const [state, setState] = React.useState(false);
-  const URL = "https://docs.google.com/spreadsheets/d/1oxyWbgWaR21WkSUbS_qyP1uILTDW12JB4qYFc9cK0D0/";
+  const URL =
+    "https://docs.google.com/spreadsheets/d/1oxyWbgWaR21WkSUbS_qyP1uILTDW12JB4qYFc9cK0D0/";
   const setInfo = (info, tableTop) => {
     setData(info);
     console.log(info);
     setState(true);
-  }
+  };
 
-  if(!state) {
+  if (!state) {
     Tabletop.init({
       key: URL,
       callback: setInfo,
-      simpleSheet: true
-  });
+      simpleSheet: true,
+    });
   }
   return (
     <div className={classes.root}>
@@ -132,6 +129,7 @@ export default function Landing() {
               align="center"
               color="textPrimary"
               gutterBottom
+              style={{ fontSize: "3.5em" }}
             >
               ProcesosWeb - ScraLaw
             </Typography>
@@ -238,35 +236,37 @@ export default function Landing() {
                 <div className="slider">
                   <h3>Created by:</h3>
                   <ul>
-                    {
-                      data.map(row => {
-                        return(
-                          <li>
-                            <div>
-                                <div className="text">
-                                    <h3>{row.Nombre}</h3>
-                                    <p>{row.Descripcion}</p>
-                                    <p>Find me on:</p>
-                                    <ul>
-                                      <li>
-                                        <a href={row.Github}>Github</a>
-                                      </li>
-                                      <li>
-                                        <a href={row.Twitter}>Twitter</a>
-                                      </li>
-                                      <li>
-                                        <a href={row.LinkedIn}>LinkedIn</a>
-                                      </li>
-                                    </ul>
-                                </div>
-                                <div className="img">
-                                    <img src={row.Imagen} width="320px" alt={row.Nombre}/>
-                                </div>
+                    {data.map((row) => {
+                      return (
+                        <li>
+                          <div>
+                            <div className="text">
+                              <h3>{row.Nombre}</h3>
+                              <p>{row.Descripcion}</p>
+                              <p>Find me on:</p>
+                              <ul>
+                                <li>
+                                  <a href={row.Github}>Github</a>
+                                </li>
+                                <li>
+                                  <a href={row.Twitter}>Twitter</a>
+                                </li>
+                                <li>
+                                  <a href={row.LinkedIn}>LinkedIn</a>
+                                </li>
+                              </ul>
                             </div>
-                          </li>
-                        )
-                      })
-                    }
+                            <div className="img">
+                              <img
+                                src={row.Imagen}
+                                width="320px"
+                                alt={row.Nombre}
+                              />
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </Paper>
