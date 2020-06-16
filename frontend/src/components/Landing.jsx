@@ -13,6 +13,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
+import {LandingStyle} from "../css/LandingStyle";
+
+
 
 function Copyright() {
   return (
@@ -88,13 +91,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3];
 
-export default function Album() {
+
+export default function Landing() {
   const classes = useStyles();
+  const [data, setData] = React.useState([]);
+  const [state, setState] = React.useState(false);
+  const URL = "https://docs.google.com/spreadsheets/d/1oxyWbgWaR21WkSUbS_qyP1uILTDW12JB4qYFc9cK0D0/";
+  const setInfo = (info, tableTop) => {
+    setData(info);
+    console.log(info);
+    setState(true);
+  }
 
+  if(!state) {
+    Tabletop.init({
+      key: URL,
+      callback: setInfo,
+      simpleSheet: true
+  });
+  }
   return (
     <div className={classes.root}>
+      <LandingStyle />
       <AppBar>
         <Toolbar>
           <BusinessCenterIcon className={classes.icon} />
@@ -212,6 +231,44 @@ export default function Album() {
                     </Grid>
                   </CardActions>
                 </Card>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <div className="slider">
+                  <h3>Created by:</h3>
+                  <ul>
+                    {
+                      data.map(row => {
+                        return(
+                          <li>
+                            <div>
+                                <div className="text">
+                                    <h3>{row.Nombre}</h3>
+                                    <p>{row.Descripcion}</p>
+                                    <p>Find me on:</p>
+                                    <ul>
+                                      <li>
+                                        <a href={row.Github}>Github</a>
+                                      </li>
+                                      <li>
+                                        <a href={row.Twitter}>Twitter</a>
+                                      </li>
+                                      <li>
+                                        <a href={row.LinkedIn}>LinkedIn</a>
+                                      </li>
+                                    </ul>
+                                </div>
+                                <div className="img">
+                                    <img src={row.Imagen} width="320px" alt={row.Nombre}/>
+                                </div>
+                            </div>
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
               </Paper>
             </Grid>
           </Grid>
