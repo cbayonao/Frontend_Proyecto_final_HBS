@@ -23,7 +23,7 @@ function App() {
         <GlobalStyle />
         <ImgDiv
           className="container"
-          style={{ backgroundImage: "url('./assets/main.jpg')" }}
+          style={{ backgroundImage: "url('https://source.unsplash.com/collection/10732248/1600x900')" }}
         >
           <ErrorLogin />
           <WaitImg />
