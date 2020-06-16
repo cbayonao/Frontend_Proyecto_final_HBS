@@ -6,9 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
   }
   .Login-Register {
-    display: flex;
     text-align: center;
-    padding: 5%;
   }
 
   .Login-Register a{
