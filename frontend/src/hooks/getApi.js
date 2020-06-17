@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const api = 'http://scralawlb-689944875.us-east-1.elb.amazonaws.com/api/';
+const api = 'https://scralawlb-689944875.us-east-1.elb.amazonaws.com/api/';
 
 export const useGetData = () => {
     const [mydata, setData] = useState([]);
