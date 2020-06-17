@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   .Login-Register a{
     text-decoration: none;
   }
+
   .container::before {
     content: "";
     display: block;
@@ -78,6 +79,7 @@ export const LoginStyle = styled.div`
   background: white;
   padding: 5%;
   box-shadow: 0 0 40px #000;
+  max-width: 1000px;
 `;
 
 export const AlignCenter = styled.h1`
