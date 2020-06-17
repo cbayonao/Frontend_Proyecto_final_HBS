@@ -20,12 +20,11 @@ export default () => {
     event.preventDefault();
 
     UserPool.signUp(email, password, [], null, (err) => {
+      let msg = "";
       if (err.code === "UsernameExistsException") {
         showError("El usuario ya existe");
         window.location.href = "#/login";
-      }
-      let msg = "";
-      if (err.code === "InvalidParameterException") {
+      } else if (err.code === "InvalidParameterException") {
         if (err.message.includes("password")) {
           msg =
             "La contraseña debe tener una longitud de 8 o mas caracteres, " +
