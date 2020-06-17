@@ -31,6 +31,19 @@ export default () => {
         console.log("onSuccess:", data);
       },
       onFailure: (err) => {
+        if (err.code === "LimitExceededException") {
+          $("#modal-close").css("display", "flex");
+          $("#modal-close p").text("Limite excedido, intenta más tarde");
+          setTimeout(() => {
+            $("#modal-close").css("display", "none");
+          }, 5000);
+        } else {
+          $("#modal-close").css("display", "flex");
+          $("#modal-close p").text("Ingresa un correo válido");
+          setTimeout(() => {
+            $("#modal-close").css("display", "none");
+          }, 5000);
+        }
         console.error("onFailure:", err);
       },
       inputVerificationCode: (data) => {
