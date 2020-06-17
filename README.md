@@ -23,7 +23,7 @@ The build is minified and the filenames include the hashes.
 npm run build
 ```
 
-## Project deployed
+## Project Deployed
 
 #### [ScraLaw](https://procesosweb.consulting)
 Click Me!
