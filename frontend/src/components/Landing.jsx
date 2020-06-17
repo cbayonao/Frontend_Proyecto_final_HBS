@@ -209,9 +209,9 @@ export default function Landing() {
                     </Typography>
                     <Typography>
                       Crea tu cuenta con nosotros y vigila todos tus procesos en
-                      una sola página; Tendrás toda la información del portal de
+                      una sola página; tendrás toda la información del portal de
                       la rama judicial unificada en un sistema solo para ti, y
-                      lo mejor es GRATIS, puedes usar este servicio de forma
+                      lo mejor, es GRATIS, puedes usar este servicio de forma
                       gratuita siempre, más adelante desarrollaremos otros
                       servicios y podrás elegir si los adquieres o no, ¿Qué
                       esperas?

@@ -21,17 +21,17 @@ export default () => {
 
     UserPool.signUp(email, password, [], null, (err) => {
       if (err.code === "UsernameExistsException") {
-        window.location.href = "#/login";
         showError("El usuario ya existe");
+        window.location.href = "#/login";
       }
       let msg = "";
       if (err.code === "InvalidParameterException") {
         if (err.message.includes("password")) {
           msg =
-            "La contrase&na debe tener una longitud de 8 o mas caracteres, " +
+            "La contraseña debe tener una longitud de 8 o mas caracteres, " +
             "tambien debe contener mayusculas, numeros, y un caracter especial";
         }
-        showError(msg, "100px");
+        showError(msg, "160px");
       } else {
         window.location.href = "#/verification";
       }

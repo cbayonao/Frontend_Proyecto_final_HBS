@@ -100,6 +100,7 @@ export default () => {
           <DivInputStyle>
             <InputStyle
               value={password}
+              type="password"
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Ingresa tu contraseña"
             />
@@ -107,6 +108,7 @@ export default () => {
           <DivInputStyle>
             <InputStyle
               value={confirmPassword}
+              type="password"
               onChange={(event) => setConfirmPassword(event.target.value)}
               placeholder="Confirma tu contraseña"
             />
