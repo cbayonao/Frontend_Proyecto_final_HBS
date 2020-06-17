@@ -165,7 +165,7 @@ export default function Landing() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://scraplawv1.s3.amazonaws.com/images/tablet-min.png"
+                    image="https://procesosweb.consulting/images/tablet-min.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
@@ -173,22 +173,22 @@ export default function Landing() {
                       Organiza tu tiempo y tus procesos en un solo lugar
                     </Typography>
                     <Typography>
-                      El tiempo es mas valioo que el oro, no lo pierdas,
+                      El tiempo es más valioso que el oro, no lo pierdas,
                       gestiona tus procesos con nosotros y tendras un perfil
                       donde podras tener la informacion de todos tus procesos,
-                      dedicale tiempo a tus clientes y al litigio estrategico,
+                      dedícale tiempo a tus clientes y al litigio estratégico,
                       no pierdas el tiempo buscando uno por uno tus procesos, en
-                      procesosWeb solo tienes que ingresa una sola vez el numero
-                      y tendras la informacion actualizada siempre.
+                      procesosWeb solo tienes que ingresar una sola vez el
+                      número y tendrás la información actualizada siempre.
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Grid item>
+                    <Grid item style={{ margin: "0 auto" }}>
                       <Button
                         href="#/register"
                         className={classes.buttonRegister}
                       >
-                        Registrate ahora
+                        Regístrate ahora
                       </Button>
                     </Grid>
                   </CardActions>
@@ -200,7 +200,7 @@ export default function Landing() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://scraplawv1.s3.amazonaws.com/images/Images2-min.png"
+                    image="https://procesosweb.consulting/images/Images2-min.png"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
@@ -209,16 +209,16 @@ export default function Landing() {
                     </Typography>
                     <Typography>
                       Crea tu cuenta con nosotros y vigila todos tus procesos en
-                      una sola pagina; Tendras toda la informacion del portal de
+                      una sola página; Tendrás toda la información del portal de
                       la rama judicial unificada en un sistema solo para ti, y
                       lo mejor es GRATIS, puedes usar este servicio de forma
-                      gratuita siempre, mas adelante desarrollaremos otros
-                      servicios y podras elegir si los adquieres o no, Que
+                      gratuita siempre, más adelante desarrollaremos otros
+                      servicios y podrás elegir si los adquieres o no, ¿Qué
                       esperas?
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Grid item>
+                    <Grid item style={{ margin: "0 auto" }}>
                       <Button
                         href="#/register"
                         className={classes.buttonRegister}
@@ -242,7 +242,7 @@ export default function Landing() {
                             <div className="text">
                               <h3>{row.Nombre}</h3>
                               <p>{row.Descripcion}</p>
-                              <p>Encuentrame en:</p>
+                              <p>Encuéntrame en:</p>
                               <ul>
                                 <li>
                                   <a href={row.Github}>Github</a>
