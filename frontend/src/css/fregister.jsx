@@ -24,6 +24,7 @@ export const FregisterStyle = createGlobalStyle`
         color: white;
         font-weight: 600;
         border: none;
+        cursor: pointer;
     }
 
     .options li:nth-child(1) button {
