@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const LandingStyle = createGlobalStyle`
+
 .slider {
   color: black;
   width: 95%;

@@ -97,7 +97,6 @@ export default function Landing() {
     "https://docs.google.com/spreadsheets/d/1oxyWbgWaR21WkSUbS_qyP1uILTDW12JB4qYFc9cK0D0/";
   const setInfo = (info, tableTop) => {
     setData(info);
-    console.log(info);
     setState(true);
   };
 
@@ -111,7 +110,7 @@ export default function Landing() {
   return (
     <div className={classes.root}>
       <LandingStyle />
-      <AppBar>
+      <AppBar style={{ backgroundColor: "#2c8493" }}>
         <Toolbar>
           <BusinessCenterIcon className={classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
@@ -234,7 +233,7 @@ export default function Landing() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <div className="slider">
-                  <h3>Created by:</h3>
+                  <h3>Creado por:</h3>
                   <ul>
                     {data.map((row) => {
                       return (
@@ -243,7 +242,7 @@ export default function Landing() {
                             <div className="text">
                               <h3>{row.Nombre}</h3>
                               <p>{row.Descripcion}</p>
-                              <p>Find me on:</p>
+                              <p>Encuentrame en:</p>
                               <ul>
                                 <li>
                                   <a href={row.Github}>Github</a>
