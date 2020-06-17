@@ -44,7 +44,11 @@ export default () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      console.error("Passwords are not the same");
+      $("#modal-close").css("display", "flex");
+      $("#modal-close p").text("Las contraseñas no coinciden");
+      setTimeout(() => {
+        $("#modal-close p").css("display", "none");
+      }, 5000);
       return;
     }
 

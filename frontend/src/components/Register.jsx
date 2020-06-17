@@ -20,6 +20,7 @@ export default () => {
     event.preventDefault();
 
     UserPool.signUp(email, password, [], null, (err) => {
+      console.log(err);
       let msg = "";
       if (err.code === "UsernameExistsException") {
         showError("El usuario ya existe");
@@ -29,11 +30,17 @@ export default () => {
           msg =
             "La contraseña debe tener una longitud de 8 o mas caracteres, " +
             "tambien debe contener mayusculas, numeros, y un caracter especial";
+        } else {
+          msg = "Problema con el correo digitado";
         }
-        showError(msg, "160px");
+      } else if (err.code === "InvalidPasswordException") {
+        msg =
+          "La contraseña debe tener una longitud de 8 o mas caracteres, " +
+          "tambien debe contener mayusculas, numeros, y un caracter especial";
       } else {
         window.location.href = "#/verification";
       }
+      showError(msg, "160px");
     });
   };
 
