@@ -33,6 +33,14 @@ export const FregisterStyle = createGlobalStyle`
         box-shadow: 0 3px 5px 2px rgba(9, 10, 10, 0.3);
     }
 
+    .options li:nth-child(1) button:hover {
+        background: linear-gradient(45deg,#c11338 30%,#e1302c 90%);
+    }
+
+    .options li:nth-child(2) button:hover {
+        background: linear-gradient(45deg,#0c62a6 30%,#2799fe 90%);
+    }
+
     .options li:nth-child(2) button {
         background: linear-gradient(45deg,#0C62A6 30%,#1E8AA3 90%);
         background-color: rgba(0, 0, 0, 0);
