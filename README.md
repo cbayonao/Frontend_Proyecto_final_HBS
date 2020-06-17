@@ -1,4 +1,4 @@
-# Procesos Web
+# Procesos Web (ScraLaw)
 
 This is the repository to store the Scraplaw project Frontend. This application helps people manage their legal cases (Colombia) in an easy and practical way, in a single place, with their own user dashboard.  
 
