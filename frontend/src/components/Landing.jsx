@@ -15,7 +15,6 @@ import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import { LandingStyle } from "../css/LandingStyle";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -130,7 +129,7 @@ export default function Landing() {
               align="center"
               color="textPrimary"
               gutterBottom
-              style={{ fontSize: "3.5em" }}
+              style={{ fontSize: "2.5em" }}
             >
               ProcesosWeb - ScraLaw
             </Typography>
