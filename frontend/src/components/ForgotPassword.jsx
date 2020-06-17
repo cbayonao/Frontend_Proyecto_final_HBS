@@ -47,7 +47,7 @@ export default () => {
       $("#modal-close").css("display", "flex");
       $("#modal-close p").text("Las contraseñas no coinciden");
       setTimeout(() => {
-        $("#modal-close p").css("display", "none");
+        $("#modal-close").css("display", "none");
       }, 5000);
       return;
     }
@@ -58,11 +58,24 @@ export default () => {
         window.location.href = "#/login";
       },
       onFailure: (err) => {
-        console.log(err);
+        let msg = "";
+        if (err.code === "InvalidParameterException") {
+          if (err.message.includes("confirmationCode")) {
+            msg = "Error con el código de confirmación";
+          } else if (err.message.includes("password")) {
+            msg =
+              "La contraseña debe tener una longitud de 8 o mas caracteres, " +
+              "tambien debe contener mayusculas, numeros, y un caracter especial";
+          }
+        } else if (err.message.includes("CodeMismatchException")) {
+          msg = "Código de verificación erronéo";
+        } else {
+          msg = "Inténtalo más tarde";
+        }
         $("#modal-close").css("display", "flex");
-        $("#modal-close p").text("Intentalo mas tarde");
+        $("#modal-close p").text(msg);
         setTimeout(() => {
-          $("#modal-close p").css("display", "none");
+          $("#modal-close").css("display", "none");
         }, 5000);
       },
     });
