@@ -30,17 +30,19 @@ export default () => {
           msg =
             "La contraseña debe tener una longitud de 8 o mas caracteres, " +
             "tambien debe contener mayusculas, numeros, y un caracter especial";
+          showError(msg, "160px");
         } else {
           msg = "Problema con el correo digitado";
+          showError(msg);
         }
       } else if (err.code === "InvalidPasswordException") {
         msg =
           "La contraseña debe tener una longitud de 8 o mas caracteres, " +
           "tambien debe contener mayusculas, numeros, y un caracter especial";
+        showError(msg, "160px");
       } else {
         window.location.href = "#/verification";
       }
-      showError(msg, "160px");
     });
   };
 
