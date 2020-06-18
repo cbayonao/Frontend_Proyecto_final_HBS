@@ -316,12 +316,14 @@ export default function Landing() {
                     &nbsp;
                     <p>
                       Este proyecto está construido en ReactJS para el frontend,
-                      Python Para el backend y la infraestructura funciona en
+                      Python para el backend y la infraestructura funciona en
                       Amazon Web Services.
                     </p>
+                    &nbsp;
                     <h4>
                       Puedes ver el código de nuestro proyecto en estos enlaces:
                     </h4>
+                    &nbsp;
                     <ul>
                       <li>
                         <a href="https://github.com/cbayonao/Frontend_Proyecto_final_HBS">

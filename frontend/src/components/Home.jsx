@@ -97,24 +97,24 @@ export default () => {
           const year = new_date.getFullYear();
           const month =
             new_date.getMonth() + 1 < 10
-              ? "0" + (new_date.getMonth() + 1)
-              : new_date.getMonth() + 1;
+				    ? "0" + (new_date.getMonth() + 1)
+				    : new_date.getMonth() + 1;
           const day =
             new_date.getDate() < 10
-              ? "0" + new_date.getDate()
-              : new_date.getDate();
+			       ? "0" + new_date.getDate()
+			       : new_date.getDate();
           const hours =
             new_date.getHours() < 10
-              ? "0" + new_date.getHours()
-              : new_date.getHours();
+				? "0" + new_date.getHours()
+				: new_date.getHours();
           const minutes =
             new_date.getMinutes() < 10
-              ? "0" + new_date.getMinutes()
-              : new_date.getMinutes();
+				  ? "0" + new_date.getMinutes()
+				  : new_date.getMinutes();
           const seconds =
             new_date.getSeconds() < 10
-              ? "0" + new_date.getSeconds()
-              : new_date.getSeconds();
+				  ? "0" + new_date.getSeconds()
+				  : new_date.getSeconds();
           return [
             process,
             demandante,
@@ -122,16 +122,16 @@ export default () => {
             response[process]["radicated_at"],
             response[process]["type_proc"],
             year +
-              "-" +
-              month +
-              "-" +
-              day +
-              " " +
-              hours +
-              ":" +
-              minutes +
-              ":" +
-              seconds,
+            "-" +
+            month +
+            "-" +
+            day +
+            " " +
+            hours +
+            ":" +
+            minutes +
+            ":" +
+            seconds,
           ];
         });
         setProcesses(proc);
@@ -152,13 +152,13 @@ export default () => {
               </DivProfileImg>
             </RDivInputStyle>
             <LabelInputHome>
-              Ingresa el número del proceso (23 digitos):
+              Ingresa el número del proceso (23 dígitos):
             </LabelInputHome>
             <InputProcHome
               id="numero"
               name="numero"
               type="text"
-              placeholder="Numero de Proceso"
+              placeholder="Número de Proceso"
             />
             <ButtonHomeInpProc onClick={addProcess}>Ingresar</ButtonHomeInpProc>
             <HomeDivTable className="processlist">
