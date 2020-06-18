@@ -180,7 +180,7 @@ export function ProcessDetail(props) {
                 id="panel1bh-header"
               >
                 <Typography component={"span"} className={classes.heading}>
-                  Fecha de Radicacion
+                  Fecha de radicación
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
@@ -214,7 +214,7 @@ export function ProcessDetail(props) {
                 id="panel1bh-header"
               >
                 <Typography component={"span"} className={classes.heading}>
-                  Ubicacion del expediente
+                  Ubicación del expediente
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>

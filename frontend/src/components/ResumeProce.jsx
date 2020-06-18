@@ -16,10 +16,10 @@ export function PaintProcess(props) {
           <table>
             <thead>
               <tr>
-                <th>Numero de Proceso</th>
+                <th>Número de Proceso</th>
                 <th>Demandante</th>
                 <th>Demandado</th>
-                <th>Fecha de Radicacion</th>
+                <th>Fecha de radicación</th>
                 <th>Tipo de Proceso</th>
                 <th>Actualizado en:</th>
               </tr>

@@ -152,7 +152,7 @@ export default () => {
               </DivProfileImg>
             </RDivInputStyle>
             <LabelInputHome>
-              Ingresa el numero del proceso (23 digitos):
+              Ingresa el número del proceso (23 digitos):
             </LabelInputHome>
             <InputProcHome
               id="numero"

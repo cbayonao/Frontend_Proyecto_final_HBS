@@ -232,6 +232,40 @@ export default function Landing() {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://s3.amazonaws.com/procesosweb.consulting/images/segura.png"
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Mantén toda tu información segura
+                    </Typography>
+                    <Typography>
+                      Tus datos de usuario y los datos de tus procesos están
+                      protegidos con una infraestructura bastante robusta basada
+                      en los servicios de Amazon Web Services, los certificados
+                      de seguridad SSL permiten la transmisión de la información
+                      de forma encriptada, ten la tranquilidad de que almacenas
+                      tus datos de forma confiable.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Grid item style={{ margin: "0 auto" }}>
+                      <Button
+                        href="#/register"
+                        className={classes.buttonRegister}
+                      >
+                        Registrate ahora
+                      </Button>
+                    </Grid>
+                  </CardActions>
+                </Card>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
                 <div className="slider">
                   <h3>Creado por:</h3>
                   <ul>
@@ -267,6 +301,40 @@ export default function Landing() {
                       );
                     })}
                   </ul>
+                  &nbsp;
+                  <div>
+                    <h4>Descripción del proyecto:</h4>
+                    &nbsp;
+                    <p>
+                      Esta aplicación permite a los usuarios manejar y
+                      administrar los procesos legales que quiera, solamente
+                      debe crear su cuenta e ingresar el número de
+                      identificación del proceso que consta de 23 dígitos, podrá
+                      mantener el número de procesos que quiera y consultarlos
+                      en su cuenta de usuario.
+                    </p>
+                    &nbsp;
+                    <p>
+                      Este proyecto está construido en ReactJS para el frontend,
+                      Python Para el backend y la infraestructura funciona en
+                      Amazon Web Services.
+                    </p>
+                    <h4>
+                      Puedes ver el código de nuestro proyecto en estos enlaces:
+                    </h4>
+                    <ul>
+                      <li>
+                        <a href="https://github.com/cbayonao/Frontend_Proyecto_final_HBS">
+                          Repositorio del Frontend
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://github.com/jzamora5/ScraLaw_API">
+                          Repositorio del Backend
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </Paper>
             </Grid>
